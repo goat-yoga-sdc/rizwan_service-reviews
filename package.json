@@ -1,0 +1,41 @@
+{
+  "name": "Reviews-module",
+  "version": "1.0.0",
+  "description": "A reviews module to be used as part of our 'Glossier' product page implementation",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dumpling-Squad/Reviews-module.git"
+  },
+  "keywords": [],
+  "author": "Andrew More",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Dumpling-Squad/Reviews-module/issues"
+  },
+  "homepage": "https://github.com/Dumpling-Squad/Reviews-module#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.43.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  }
+}
