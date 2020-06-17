@@ -20,14 +20,15 @@ CREATE TABLE users(
 
 CREATE TABLE reviews(
   id INT AUTO_INCREMENT NOT NULL,
-  productName VARCHAR(255),
   productId INT NOT NULL,
-  user_id INT
+  productName VARCHAR(255),
+  user_id INT,
   reviewTitle VARCHAR(255),
   reviewText TEXT,
   rating INT NULL,
   bottomLine VARCHAR(200),
   helpfulPeeps INT,
+  notHelpfulPeeps INT,
   FOREIGN KEY (user_id)
     REFERENCES users(id)
     ON DELETE CASCADE,
