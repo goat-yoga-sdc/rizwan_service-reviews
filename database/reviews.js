@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 module.exports.reviews =
 [
   {"reviewerID": "A1YJEY40YUW4SE", "asin": "7806397051", "reviewerName": "Andrea", "helpful": [3, 4], "reviewText": "Very oily and creamy. Not at all what I expected... ordered this to try to highlight and contour and it just looked awful!!! Plus, took FOREVER to arrive.", "overall": 1.0, "summary": "Don't waste your money", "unixReviewTime": 1391040000, "reviewTime": "01 30, 2014"},
@@ -1200,4 +1201,4 @@ module.exports.reviews =
   {"reviewerID": "A2HMF8ZR67BNZS", "asin": "B00005304H", "reviewerName": "Bill A. Belt", "helpful": [0, 0], "reviewText": "We have tried the store bands and the &#34;off&#34; brands and find this product, while not perfect is the best of all of them. For us the swabs stayed intact and firm and did not unravel as was noted with other reviewers. In fact that was what the store brands did. The only reason that we did nto give a five star rating is that soem of the swabs were packed so tightly on the ends they did not absorb much.", "overall": 4.0, "summary": "Qtips Are The Best", "unixReviewTime": 1404259200, "reviewTime": "07 2, 2014"},
   {"reviewerID": "A2K0W9HNCJ746V", "asin": "B00005304H", "reviewerName": "B. Kocher", "helpful": [0, 0], "reviewText": "I'm sure I'm not the only one but I use these to clean my ears with, even though the labeling tells you not to. Just be careful!", "overall": 5.0, "summary": "Great for cleaning them ears out (even though you're apparently not supposed to)", "unixReviewTime": 1398729600, "reviewTime": "04 29, 2014"},
   {"reviewerID": "A1XQ0F01CF84Y3", "asin": "B00005304H", "reviewerName": "Caligal", "helpful": [0, 0], "reviewText": "These work great and are not the kind that are flimsy.. Good quality and durable.. I use daily and they are soft and the cotton is tight rolled and dont come unraveled in your ear like some cheaper versions!", "overall": 5.0, "summary": "Work best", "unixReviewTime": 1401840000, "reviewTime": "06 4, 2014"}
-]
+];
