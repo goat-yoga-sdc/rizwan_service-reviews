@@ -10,9 +10,8 @@ CREATE TABLE users(
   passHash VARCHAR(255),
   firstName VARCHAR(255),
   lastName VARCHAR(255),
-  birthYear INT NOT NULL,
-  city NULL VARCHAR(255),
-  states NULL VARCHAR(255),
+  ageRange VARCHAR(100),
+  place VARCHAR(255),
   skinType VARCHAR(255),
   skinShade VARCHAR(255),
   PRIMARY KEY(id)
