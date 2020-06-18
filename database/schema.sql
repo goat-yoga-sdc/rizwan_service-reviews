@@ -27,7 +27,7 @@ CREATE TABLE reviews(
   rating INT NULL,
   bottomLine VARCHAR(200),
   helpfulPeeps VARCHAR(100),
-  reviewTime VRCHAR(100),
+  reviewTime VARCHAR(100),
   FOREIGN KEY (user_id)
     REFERENCES users(id)
     ON DELETE CASCADE,
