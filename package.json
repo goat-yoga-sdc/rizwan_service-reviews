@@ -4,6 +4,7 @@
   "description": "A reviews module to be used as part of our 'Glossier' product page implementation",
   "main": ".eslintrc.js",
   "scripts": {
+    "start": "nodemon ./server/index.js",
     "test": "jest --coverage"
   },
   "repository": {

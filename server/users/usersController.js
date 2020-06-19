@@ -1,8 +1,9 @@
-const model = require('../database/model.js');
+const model = require('../../database/users/usersModel.js');
 
 const controller = {
   getUser: (req, res)=>{
-    model.getUser(req.params.id, (err, result)=>{
+    console.log('User id : ', req.params);
+    model.getUser(req.params.userId, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
@@ -12,11 +13,12 @@ const controller = {
   },
   postAuth: (req, res)=>{
     //username and hashed password will be sent in body
+    console.log('Request body : ', req.body);
     model.postAuth(req.body, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send('Successful post!');
+        res.status(200).send(result);
       }
     });
   }

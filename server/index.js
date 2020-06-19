@@ -3,8 +3,8 @@ const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
-const reviewsRouter = require('./reviews/router');
-const usersRouter = require('./users/router');
+const reviewsRouter = require('./reviews/reviewsRouter');
+const usersRouter = require('./users/usersRouter');
 
 const app = express();
 const port = 3000;

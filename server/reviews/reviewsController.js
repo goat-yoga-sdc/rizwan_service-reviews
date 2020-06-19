@@ -1,4 +1,4 @@
-const model = require('../database/model.js');
+const model = require('../../database/reviews/reviewsModel.js');
 
 const controller = {
   getByProdId: (req, res)=>{
