@@ -1,10 +1,10 @@
 const faker = require('faker');
 const reviewData = require('./reviews.js');
-// const db = require('./index.js');
+const db = require('../index.js');
 
 
 //Create functions to randomly generate this data
-const review = {
+const random = {
   productId: (quantity) => {
     return Math.floor(Math.random() * quantity);
   },
@@ -24,10 +24,12 @@ const review = {
 
 //Add reviewData.reviewTime here and to schema
 const insertMockData = function() {
-  reviewData.forEach((product)=>{
-    db.query(`INSERT INTO reviews (productId, productName, user_id , reviewTitle, reviewText, rating, bottomLine, helpfulPeeps, reviewTime) VALUES(${review.productId(100)}, "${review.productName()}", ${review.user_id(400)}, "${review.reviewTitle()}", "${reviewData.reviewText}", "${reviewData.overall}", "${reviewData.summary}", "${reviewData.helpful}", "${reviewData.reviewTime}");`, (err, result)=>{
+  reviewData.forEach((review)=> {
+    db.query(`INSERT INTO reviews (productId, productName, user_id , reviewTitle, reviewText, rating, bottomLine, helpfulPeeps, reviewTime) VALUES(${random.productId(100)}, "${random.productName()}", ${random.user_id(400)}, "${random.reviewTitle()}", "${review.reviewText}", ${review.overall}, "${review.summary}", "${review.helpful}", "${review.reviewTime}");`, (err, result)=>{
       if (err) { console.error(err); } else { console.log('Review successfully seeded'); }
     });
+
+    // console.log(`INSERT INTO reviews (productId, productName, user_id , reviewTitle, reviewText, rating, bottomLine, helpfulPeeps, reviewTime) VALUES(${random.productId(100)}, "${random.productName()}", ${random.user_id(400)}, "${random.reviewTitle()}", "${review.reviewText}", ${review.overall}, "${review.summary}", "${review.helpful}", "${review.reviewTime}");`);
   });
   // for (let i = 0; i < 10; i++) {
   //   console.log(`${review.productId(100)}, ${review.productName()}, ${review.user_id(400)}, ${review.reviewTitle()}, ${reviewData[i].reviewText}, ${reviewData[i].overall}, ${reviewData[i].summary}, ${reviewData[i].helpful}`);

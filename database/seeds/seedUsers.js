@@ -1,5 +1,5 @@
 const faker = require('faker');
-const db = require('./index.js');
+const db = require('../index.js');
 
 const skinTypes = ['Combination', 'Normal', 'Dry', 'Oily'];
 const ageRanges = ['17-24', '25-30', '31-40', '41-50', '51-60', '60 & Up'];
@@ -30,7 +30,7 @@ const insertMockData = function(numberOfUsers) {
   let users = createUsers(numberOfUsers);
   users.forEach((user)=>{
     db.query(`INSERT INTO users (username, passHash, firstName, lastName, ageRange, place, skinType, skinShade) VALUES("${user.username}", "${user.password}", "${user.firstName}", "${user.lastName}", "${user.ageRange}", "${user.location}", "${user.skinType}", "${user.skinShade}");`, (err, result)=>{
-      if (err) { console.error(err); } else { console.log('Product successfully seeded'); }
+      if (err) { console.error(err); } else { console.log('User successfully seeded'); }
     });
     // console.log(user);
   });
