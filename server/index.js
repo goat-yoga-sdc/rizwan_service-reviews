@@ -3,7 +3,8 @@ const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
-const router = require('./router');
+const reviewsRouter = require('./reviews/router');
+const usersRouter = require('./users/router');
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/', express.static(path.join(__dirname + '/../public')));
-app.use('/reviews', router);
+app.use('/reviews', reviewsRouter);
+app.use('/users', usersRouter);
 
-app.listen(port, () => console.log(`Review Modules app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Reviews module app listening at http://localhost:${port}`));
