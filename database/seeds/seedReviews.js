@@ -1,16 +1,19 @@
 const faker = require('faker');
 const reviewData = require('./reviews.js');
-const db = require('../index.js');
+// const db = require('../index.js');
 
 
 //Create functions to randomly generate this data
 const random = {
-  productId: (quantity) => {
-    return Math.floor(Math.random() * quantity);
-  },
-  //create random Name for now
-  productName: () => {
-    return faker.commerce.productName();
+  product: (quantity) => {
+    let products = [];
+    for (let i = 0; i < quantity; i++) {
+      products.push({
+        id: i,
+        name: faker.commerce.productName()
+      });
+    }
+    return products[Math.floor(Math.random() * quantity)];
   },
   // eslint-disable-next-line camelcase
   user_id: (quantity) => {
@@ -24,8 +27,10 @@ const random = {
 
 //Add reviewData.reviewTime here and to schema
 const insertMockData = function() {
+
   reviewData.forEach((review)=> {
-    db.query(`INSERT INTO reviews (productId, productName, user_id , reviewTitle, reviewText, rating, bottomLine, helpfulPeeps, reviewTime) VALUES(${random.productId(100)}, "${random.productName()}", ${random.user_id(400)}, "${random.reviewTitle()}", "${review.reviewText}", ${review.overall}, "${review.summary}", "${review.helpful}", "${review.reviewTime}");`, (err, result)=>{
+    let product = random.product(100);
+    db.query(`INSERT INTO reviews (productId, productName, user_id , reviewTitle, reviewText, rating, bottomLine, helpfulPeeps, reviewTime) VALUES(${product.id}, "${product.name}", ${random.user_id(400)}, "${random.reviewTitle()}", "${review.reviewText}", ${review.overall}, "${review.summary}", "${review.helpful}", "${review.reviewTime}");`, (err, result)=>{
       if (err) { console.error(err); } else { console.log('Review successfully seeded'); }
     });
 
@@ -37,5 +42,7 @@ const insertMockData = function() {
   console.log('All reviews seeded successfully into DB');
 };
 //Change the number of reviews that we want created in this invocation
-insertMockData();
+// insertMockData();
 
+// const product = random.product(10);
+// console.log(product.id, product.name);

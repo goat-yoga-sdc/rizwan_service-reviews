@@ -3,14 +3,22 @@ const db = require('../index.js');
 const model = {
   getByProdId: (id, callback)=>{
     //Execute query by product ID if id is  number
-    if (typeof id === number) {
-      db.query('', (err, result) =>{
-        if (err) { callback(err, null); } else { callback(null, result); }
+    if (parseInt(id) !== NaN) {
+      console.log(`Product ID : ${id}`);
+      db.query(`SELECT * FROM reviews WHERE productId=${id};`, (err, result) =>{
+        if (err) { callback(err, null); } else {
+          console.log('By id result : ', result);
+          callback(null, result);
+        }
       });
       //Else execute query by product name,
-    } else if (typeof id === string) {
-      db.query('', (err, result) =>{
-        if (err) { callback(err, null); } else { callback(null, result); }
+    } else {
+      console.log(`Product name : ${id}`);
+      db.query(`SELECT * FROM reviews WHERE productName="${id}";`, (err, result) =>{
+        if (err) { callback(err, null); } else {
+          console.log('By name result : ', result);
+          callback(null, result);
+        }
       });
     }
   },

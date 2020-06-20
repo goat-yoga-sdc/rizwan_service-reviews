@@ -2,7 +2,7 @@ const model = require('../../database/reviews/reviewsModel.js');
 
 const controller = {
   getByProdId: (req, res)=>{
-    model.getByProdId(req.params.id, (err, result)=>{
+    model.getByProdId(req.params.productId, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
@@ -11,7 +11,7 @@ const controller = {
     });
   },
   getBySkinType: (req, res)=>{
-    model.getBySkinType(req.params.id, (err, result)=>{
+    model.getBySkinType(req.params.productId, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
@@ -20,7 +20,7 @@ const controller = {
     });
   },
   getBySkinShade: (req, res)=>{
-    model.getBySkinShade(req.params.id, (err, result)=>{
+    model.getBySkinShade(req.params.productId, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
@@ -29,7 +29,7 @@ const controller = {
     });
   },
   getByAgeRange: (req, res)=>{
-    model.getByAgeRange(req.params.id, (err, result)=>{
+    model.getByAgeRange(req.params.productId, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
@@ -38,7 +38,7 @@ const controller = {
     });
   },
   postHelpful: (req, res)=>{
-    model.postHelpful(req.params.id, req.body, (err, result)=>{
+    model.postHelpful(req.params.productId, req.body, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
