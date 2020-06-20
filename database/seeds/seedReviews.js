@@ -1,31 +1,7 @@
-const faker = require('faker');
-const reviewData = require('./reviews.js');
+const review = require('./reviewGenerator.js');
 // const db = require('../index.js');
 
 
-//Create functions to randomly generate this data
-const random = {
-  product: (quantity) => {
-    let products = [];
-    for (let i = 0; i < quantity; i++) {
-      products.push({
-        id: i,
-        name: faker.commerce.productName()
-      });
-    }
-    return products[Math.floor(Math.random() * quantity)];
-  },
-  // eslint-disable-next-line camelcase
-  user_id: (quantity) => {
-    return Math.floor(Math.random() * quantity);
-  },
-  reviewTitle: () => {
-    return faker.commerce.productAdjective() + ' ' + faker.random.words();
-  }
-};
-
-
-//Add reviewData.reviewTime here and to schema
 const insertMockData = function() {
 
   reviewData.forEach((review)=> {
