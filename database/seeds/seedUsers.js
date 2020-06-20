@@ -26,7 +26,7 @@ const createUsers = (numberOfUsers) => {
   return usersArr;
 };
 
-const insertMockData = function(numberOfUsers) {
+const insertMockData = (numberOfUsers) => {
   let users = createUsers(numberOfUsers);
   users.forEach((user)=>{
     db.query(`INSERT INTO users (username, passHash, firstName, lastName, ageRange, place, skinType, skinShade) VALUES("${user.username}", "${user.password}", "${user.firstName}", "${user.lastName}", "${user.ageRange}", "${user.location}", "${user.skinType}", "${user.skinShade}");`, (err, result)=>{
@@ -36,5 +36,5 @@ const insertMockData = function(numberOfUsers) {
   });
   console.log('All users seeded successfully into DB');
 };
-//Change the number of users that we want created in this invocation
-insertMockData(400);
+
+module.exports = insertMockData;

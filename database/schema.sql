@@ -33,17 +33,3 @@ CREATE TABLE reviews(
     ON DELETE CASCADE,
   PRIMARY KEY(id)
 );
-
-/* SEEDING QUERIES */
-
-/* SEED USERS
-INSERT INTO users (username, passHash, firstName, lastName, birthYear, city, states, skinType, skinShade) VALUES();
-*/
--- INSERT INTO users (username, passHash, firstName, lastName, birthYear, states, skinType, skinShade) VALUES("rambo", "dsf34", "John", "Rambo", 1960, "Florida", "Dry", "Deep");
--- INSERT INTO users (username, passHash, firstName, lastName, birthYear, city, states, skinType, skinShade) VALUES("o_o", "rg3jio5", "Olive", "Oyle", 1990, "Seattle", "WA", "Oily", "Rich");
--- INSERT INTO users (username, passHash, firstName, lastName, birthYear, city, states, skinType, skinShade) VALUES("popeye", "lk83nf", "Pop", "Eye", 1980, "Sacramento", "CA", "Combination", "Light");
-
-
-/* SEED REVIEWS
-  INSERT INTO reviews (productName, productId, reviewTitle, reviewText, rating, bottomLine, helpfulPeeps) VALUES();
-*/

@@ -1,3 +1,4 @@
+//This file generates the rest of the review data in our review object
 const randomReviewText = require('./reviewTextGenerator.js');
 const faker = require('faker');
 
@@ -15,7 +16,7 @@ const randomElement = (array) => {
 };
 
 //This simulates an array of product {id, name} object I would get from Mrinal through proxy server
-const productIdNameGenerator = (numberOfProducts) => {
+const randomProductsGenerator = (numberOfProducts) => {
   let products = [];
   for (let i = 0; i < numberOfProducts; i++) {
     products.push({
@@ -32,7 +33,7 @@ const randomUserId = (numberOfUsers) => {
 };
 
 const randomReviewTitle = (productName) => {
-  return `${faker.commerce.productAdjective()}  ${faker.random.words()}  ${productName}`;
+  return `${faker.commerce.productAdjective()} ${faker.random.words()} ${productName}`;
 };
 
 const randomBottomLine = (productName) => {
@@ -75,11 +76,10 @@ const randomDate = () => {
   }
 };
 
-const randomReview = (numberOfUsers, productName)=>{
-
+const randomReview = (numberOfUsers, productName, productId)=>{
   let newReview = {
-    productId: '',
-    productName: '',
+    productId: productId,
+    productName: productName,
     // eslint-disable-next-line camelcase
     user_id: randomUserId(numberOfUsers),
     reviewTitle: randomReviewTitle(productName),
@@ -92,4 +92,21 @@ const randomReview = (numberOfUsers, productName)=>{
   return newReview;
 };
 
-console.log(randomReview(400, 'lotion'));
+const createReviews = (numberOfProducts, numberOfUsers, avgReviewsPerProduct) => {
+  let products = randomProductsGenerator(numberOfProducts);
+  //This creates a range of the middle 50%, centered on the avg. In theory, a large enough selection will show values adhering to the avg.
+  let min = avgReviewsPerProduct / 2;
+  let max = avgReviewsPerProduct + min;
+  let reviewsArr = [];
+  products.forEach(({id, name})=>{
+    let reviewsPerProduct = getRandomValue(min, max);
+    for (let i = 0; i < reviewsPerProduct; i++) {
+      reviewsArr.push(randomReview(numberOfUsers, name, id));
+    }
+  });
+  return reviewsArr;
+};
+
+console.log(createReviews(10, 40, 8));
+
+module.exports = createReviews;
