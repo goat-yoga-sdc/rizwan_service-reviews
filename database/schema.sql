@@ -24,7 +24,7 @@ CREATE TABLE reviews(
   user_id INT,
   reviewTitle VARCHAR(255),
   reviewText TEXT,
-  rating INT NULL,
+  rating FLOAT (2, 1) NULL,
   bottomLine VARCHAR(200),
   helpfulPeeps VARCHAR(100),
   reviewTime VARCHAR(100),
