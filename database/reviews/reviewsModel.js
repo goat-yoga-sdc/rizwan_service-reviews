@@ -7,7 +7,7 @@ const model = {
       console.log(`Product ID : ${id}`);
       db.query(`SELECT * FROM reviews WHERE productId=${id};`, (err, result) =>{
         if (err) { callback(err, null); } else {
-          console.log('By id result : ', result);
+          // console.log('By id result : ', result);
           callback(null, result);
         }
       });
@@ -16,7 +16,7 @@ const model = {
       console.log(`Product name : ${id}`);
       db.query(`SELECT * FROM reviews WHERE productName="${id}";`, (err, result) =>{
         if (err) { callback(err, null); } else {
-          console.log('By name result : ', result);
+          // console.log('By name result : ', result);
           callback(null, result);
         }
       });
