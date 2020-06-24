@@ -62,7 +62,6 @@ class App extends React.Component {
     return (
       <div>
         <div className='main-wrapper'>
-          Hello From React
           <HighlightsList totalReviews={this.state.totalReviews} reviews={this.state.reviews.slice(0, 3)}/>
         </div>
         <div className='reviews-wrapper'>

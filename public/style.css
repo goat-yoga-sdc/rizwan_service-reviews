@@ -74,6 +74,41 @@ ul {
   flex-basis: 41.6667%;
   width: 41.6667%;
   max-width: 41.6667%;
+  border-bottom: 1px solid rgb(217, 217, 217);
+  border-top: 1px solid rgb(217, 217, 217);
+}
+
+.highlights--header {
+  width: 100%;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 20px 16px 20px 0px;
+}
+
+.highlights--header h3 {
+  font-style: inherit;
+  white-space: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0px;
+}
+
+.highlights--header button {
+  top: -2px;
+  position: relative;
+  font-size: 30px;
+  line-height: 22px;
+  font-weight: 400;
+  align-self: flex-start;
+  padding: 0px;
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  outline: none;
 }
 
 #reviews-accordion {

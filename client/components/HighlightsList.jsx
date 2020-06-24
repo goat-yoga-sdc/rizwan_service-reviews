@@ -5,29 +5,48 @@ class HighlightsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      top3: this.props.reviews.slice(0, 4)
+      accordionOpen: false
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      accordionOpen: !this.state.accordionOpen
+    });
   }
 
   render() {
-    return (
-      <div className='highlights-wrapper'>
-        <div className='highlights--header'>
-          <h3>{this.props.totalReviews} Reviews</h3>
-          <button></button>
+    if (!this.state.accordionOpen) {
+      return (
+        <div className='highlights-wrapper'>
+          <div className='highlights--header'>
+            <h3>{this.props.totalReviews} Reviews</h3>
+            <button onClick={this.handleClick}>-</button>
+          </div>
+          <div id='reviews-accordion'>
+            <h3>Review Highlights</h3>
+            <ul>
+              {this.props.reviews.map((review, index)=>(
+                <HighlightsEntry
+                  key={index}
+                  review={review}
+                />))}
+            </ul>
+          </div>
         </div>
-        <div id='reviews-accordion'>
-          <h3>Review Highlights</h3>
-          <ul>
-            {this.props.reviews.map((review, index)=>(
-              <HighlightsEntry
-                key={index}
-                review={review}
-              />))}
-          </ul>
+      );
+    } else {
+      return (
+        <div className='highlights-wrapper'>
+          <div className='highlights--header'>
+            <h3>{this.props.totalReviews} Reviews</h3>
+            <button onClick={this.handleClick}>+</button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+
   }
 }
 export default HighlightsList;
