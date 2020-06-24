@@ -33,15 +33,15 @@ const randomUserId = (numberOfUsers) => {
 };
 
 const randomReviewTitle = (productName) => {
-  return `${faker.commerce.productAdjective()} ${faker.random.words()} ${productName}`;
-};
-
-const randomBottomLine = (productName) => {
   let opening = ['Don\'t even think about buying this', 'Loved this', 'Awesome', 'Horrible', 'Hated this', 'Great', 'You must buy this', 'A great deal for this', 'A waste of', 'Exceptionally'];
   let closing = ['.', '!', '.', '!!', '.'];
   let adjective = faker.commerce.productAdjective();
-  let words = faker.random.words();
-  return `${randomElement(opening)} ${adjective.toLowerCase()} ${words.toLowerCase()} ${productName}${randomElement(closing)}`;
+  return `${randomElement(opening)} ${adjective.toLowerCase()} ${productName}${randomElement(closing)}`;
+};
+
+const randomBottomLine = () => {
+  let phrase = ['Yes - I would recommend this to a friend', 'No - I would not recommend this to a friend'];
+  return `${randomElement(phrase)}`;
 };
 
 const randomRating = () => {
@@ -56,7 +56,7 @@ const randomRating = () => {
 
 const randomHelpful = () =>{
   //get total number of votes
-  let totalVotes = getRandomValue(2, 60);
+  let totalVotes = getRandomValue(2, 80);
   //get number of those votes who found review helpful
   let numberOfHelpful = getRandomValue(1, totalVotes);
   let helpfulPeeps = [numberOfHelpful, totalVotes];
@@ -85,7 +85,7 @@ const randomReview = (numberOfUsers, productName, productId)=>{
     reviewTitle: randomReviewTitle(productName),
     reviewText: randomReviewText(productName),
     rating: randomRating(),
-    bottomLine: randomBottomLine(productName),
+    bottomLine: randomBottomLine(),
     helpfulPeeps: randomHelpful(),
     reviewTime: randomDate()
   };
@@ -107,6 +107,6 @@ const createReviews = (numberOfProducts, numberOfUsers, avgReviewsPerProduct) =>
   return reviewsArr;
 };
 
-console.log(createReviews(10, 40, 8));
+// console.log(createReviews(10, 40, 8));
 
 module.exports = createReviews;

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import HighlightsList from '';
+import HighlightsList from './HighlightsList.jsx';
 import ReviewsCounter from './ReviewsCounter.jsx';
 // import ReviewsSearch from '';
 // import ReviewsList from '';
@@ -61,12 +61,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Hello From React
-        {/* <HighlightsList/> */}
-        <div></div>
-        <ReviewsCounter totalReviews={this.state.totalReviews} avgRating={this.state.avgRating}/>
-        {/* <ReviewsSearch/>
-        <ReviewsList/> */}
+        <div className='main-wrapper'>
+          Hello From React
+          <HighlightsList totalReviews={this.state.totalReviews} reviews={this.state.reviews.slice(0, 3)}/>
+        </div>
+        <div className='reviews-wrapper'>
+          <ReviewsCounter totalReviews={this.state.totalReviews} avgRating={this.state.avgRating}/>
+          {/* <ReviewsSearch/>
+          <ReviewsList/> */}
+        </div>
       </div>
     );
   }

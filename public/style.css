@@ -19,6 +19,12 @@ a, a:focus, a:hover {
   text-decoration: none;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+}
+
 .button--block {
   display: inline-flex;
   align-items: center;
@@ -48,6 +54,84 @@ a, a:focus, a:hover {
   border-style: solid;
   border-color: rgb(0, 0, 0);
   border-image: initial;
+}
+
+.main-wrapper {
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+}
+
+.highlights-wrapper {
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 41.6667%;
+  width: 41.6667%;
+  max-width: 41.6667%;
+}
+
+#reviews-accordion {
+  max-height: 4000px;
+  text-align: left;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  box-sizing: border-box;
+  background-color: rgb(243, 246, 246);
+  padding: 0 16px 16px 16px;
+}
+
+#reviews-accordion h3 {
+  font-family: "Apercu Pro", -apple-system, BlinkMacSystemFont, Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  padding: 20px 0px 18px;
+}
+
+#reviews-accordion h4 {
+  font-size: 16px;
+  line-height: 22px;
+  margin: 6px 0px;
+}
+
+#reviews-accordion li {
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px;
+  padding: 16px;
+  background: rgb(255, 255, 255);
+  border-radius: 3px;
+}
+
+#reviews-accordion ul > li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.clamp-lines__button {
+  font-weight: 700;
+  text-align: left;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  line-height: 16px;
+  background: transparent;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  padding: 0px;
+  margin: 0px;
+  text-decoration: underline;
+}
+
+#clamped-content-truncated {
+  line-height: 1.5;
 }
 
 .reviews-header {

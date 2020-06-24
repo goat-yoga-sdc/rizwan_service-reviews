@@ -7,4 +7,4 @@ const seedDb = (numberOfProducts, numberOfUsers, avgReviewsPerProduct)=>{
   console.log('DB seeded successfully and completely.');
 };
 
-seedDb(100, 400, 9);
+seedDb(100, 400, 18);
