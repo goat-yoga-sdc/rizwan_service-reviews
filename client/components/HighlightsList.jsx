@@ -20,9 +20,9 @@ class HighlightsList extends React.Component {
     if (!this.state.accordionOpen) {
       return (
         <div className='highlights-wrapper'>
-          <div className='highlights--header'>
+          <div className='highlights--header' onClick={this.handleClick}>
             <h3>{this.props.totalReviews} Reviews</h3>
-            <button onClick={this.handleClick}>-</button>
+            <button>-</button>
           </div>
           <div id='reviews-accordion'>
             <h3>Review Highlights</h3>
@@ -39,9 +39,9 @@ class HighlightsList extends React.Component {
     } else {
       return (
         <div className='highlights-wrapper'>
-          <div className='highlights--header'>
+          <div className='highlights--header' onClick={this.handleClick}>
             <h3>{this.props.totalReviews} Reviews</h3>
-            <button onClick={this.handleClick}>+</button>
+            <button>+</button>
           </div>
         </div>
       );

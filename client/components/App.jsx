@@ -3,7 +3,7 @@ import axios from 'axios';
 import HighlightsList from './HighlightsList.jsx';
 import ReviewsCounter from './ReviewsCounter.jsx';
 // import ReviewsSearch from '';
-// import ReviewsList from '';
+import ReviewsEntry from './ReviewsEntry.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -62,12 +62,23 @@ class App extends React.Component {
     return (
       <div>
         <div className='main-wrapper'>
-          <HighlightsList totalReviews={this.state.totalReviews} reviews={this.state.reviews.slice(0, 3)}/>
+          <div className='gutter-left'></div>
+          <div className='productImage'></div>
+          <div className='productHighlights-wrapper'>
+            <div className='productDetail'></div>
+            <HighlightsList totalReviews={this.state.totalReviews} reviews={this.state.reviews.slice(0, 3)}/>
+          </div>
         </div>
         <div className='reviews-wrapper'>
           <ReviewsCounter totalReviews={this.state.totalReviews} avgRating={this.state.avgRating}/>
-          {/* <ReviewsSearch/>
-          <ReviewsList/> */}
+          {/* <ReviewsSearch/>*/}
+          <div className='review-list'>
+            {this.state.reviews.map((review, index)=>(
+              <ReviewsEntry
+                key={index}
+                review={review}
+              />))}
+          </div>
         </div>
       </div>
     );

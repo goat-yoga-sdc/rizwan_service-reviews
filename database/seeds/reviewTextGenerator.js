@@ -40,7 +40,7 @@ const randomReviewSentence = (productName) => {
 
 const randomReviewParagraph = (productName)=>{
   let reviewParagraph = '  ';
-  let paragraphLength = getRandomIndex(2, 7);
+  let paragraphLength = getRandomIndex(2, 6);
   for (let i = 0; i < paragraphLength; i++) {
     reviewParagraph += randomReviewSentence(productName) + ' ';
   }
@@ -50,9 +50,10 @@ const randomReviewParagraph = (productName)=>{
 
 const generateReview = (productName)=>{
   let review = '';
-  let reviewLength = getRandomIndex(1, 8);
+  let reviewLength = getRandomIndex(1, 6);
   for (let i = 0; i < reviewLength; i++) {
-    review += `${randomReviewParagraph(productName)} \ `;
+    //currently the output review is not formatted correctly with line breaks between paragraphs. '\n' does not seem to work
+    review += `${randomReviewParagraph(productName)} \n `;
   }
   return review;
 };

@@ -18,7 +18,7 @@ CREATE TABLE users(
 );
 
 CREATE TABLE reviews(
-  id INT AUTO_INCREMENT NOT NULL,
+  reviewId INT AUTO_INCREMENT NOT NULL,
   productId INT NOT NULL,
   productName VARCHAR(255),
   user_id INT,
@@ -31,5 +31,5 @@ CREATE TABLE reviews(
   FOREIGN KEY (user_id)
     REFERENCES users(id)
     ON DELETE CASCADE,
-  PRIMARY KEY(id)
+  PRIMARY KEY(reviewId)
 );

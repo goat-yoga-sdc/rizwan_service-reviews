@@ -25,7 +25,7 @@ const HighlightsEntry = (props) =>{
         lessText="See Less"
         innerElement="p"
       />
-      <p>{props.review.helpfulPeeps.split(',')[0]} people found this helpful</p>
+      <p className='helpful'>{props.review.helpfulPeeps.split(',')[0]} people found this helpful</p>
     </li>
   );
 };
