@@ -1,15 +1,18 @@
+/*reset CSS */
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: 'Apercu Pro', -apple-system, Helvetica, Arial, sans-serif !important;
+  line-height: 1.5;
   margin: 0;
 }
 
 p {
   font-size: 14px;
   margin: 1rem 0px;
+  white-space: pre-wrap;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,6 +29,7 @@ ul {
   padding: 0px;
 }
 
+/* Buttons */
 .button--block {
   display: inline-flex;
   align-items: center;
@@ -57,6 +61,28 @@ ul {
   border-image: initial;
 }
 
+.button--transparent {
+  background-color: transparent;
+  -webkit-appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: inherit;
+  fill: rgb(0, 0, 0);
+  margin: 0px 0px 2px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  flex: 1 1 0%;
+  padding: 6px;
+}
+
+/* Styling for rating star */
 path.star {
   stroke: #000000;
   stroke-width: 1.5px;
@@ -67,12 +93,32 @@ path.star {
   margin: 16px 64px 24px;
 }
 
+/*styling for arrows */
+.up-arrow {
+  box-sizing: border-box;
+  display: flex;
+}
+
+.down-arrow {
+  box-sizing: border-box;
+  display: flex;
+  transform: rotate(180deg);
+}
+
+/* */
 .header {
   background-image: url('./img/header.png');
   height: 130px;
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.productDetail {
+  background-image: url('./img/productDetail.png');
+  background-repeat: no-repeat;
+  min-height: 600px;
+
 }
 
 .main-wrapper {
@@ -120,13 +166,7 @@ path.star {
   padding: 0 16px;
 }
 
-.productDetail {
-  background-image: url('./img/productDetail.png');
-  background-repeat: no-repeat;
-  min-height: 600px;
-
-}
-
+/* */
 .highlights-wrapper {
   border-bottom: 1px solid rgb(217, 217, 217);
   border-top: 1px solid rgb(217, 217, 217);
@@ -166,6 +206,7 @@ path.star {
   outline: none;
 }
 
+/* */
 #reviews-accordion {
   max-height: 4000px;
   text-align: left;
@@ -204,6 +245,7 @@ path.star {
   margin-bottom: 10px;
 }
 
+/* */
 p.helpful {
   font-style: inherit;
   font-weight: 400;
@@ -214,6 +256,7 @@ p.helpful {
   margin: 8px 0px 0px;
 }
 
+/* 'Read More' & 'See Less' buttons */
 .clamp-lines__button {
   font-weight: 700;
   text-align: left;
@@ -235,6 +278,7 @@ p.helpful {
   line-height: 1.5;
 }
 
+/* Counter and post review button */
 .counter-header {
   text-align: center;
   align-items: center;
@@ -254,6 +298,7 @@ p.helpful {
   padding: 7px 2px 5px;
 }
 
+/* review list*/
 .review-article {
   display: flex;
   -ms-flex-flow: row wrap;
@@ -265,13 +310,73 @@ p.helpful {
 .review-article section, .review-content {
   display: flex;
   flex-flow: column wrap;
+}
+
+.review-content {
   padding-left: 5%;
 }
 
+/*user info in review list */
 .review-user-info {
   width: 200px;
 }
 
+.review-display-name {
+  font-weight: 700;
+  font-size: 14px;
+  margin: initial;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.review-display-location {
+  margin: initial;
+}
+
+.review-user {
+  margin-top: 15px;
+  width: fit-content;
+  list-style: none;
+  padding-top: 15px;
+}
+
+/* review content */
 .review-text-container {
   width: 570px;
+}
+
+.review-content-header {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.review-title {
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.review-bottom-line {
+  margin-bottom: 0;
+}
+
+.review-bottom-line b {
+  margin-right: 15px;
+}
+
+.review-footer-container {
+  margin: 0;
+  display: inline;
+}
+
+.review-footer-text {
+  margin-bottom: 0;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+span.helpful {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 1rem 0px;
 }

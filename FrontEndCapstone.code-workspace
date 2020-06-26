@@ -2,30 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../hrla37-technical-assessment"
-		},
-		{
-			"path": "../hrla37-fullstack-review"
-		},
-		{
-			"path": "../hrla37-react-express-review"
-		},
-		{
-			"path": "../fullstack-sql-mock"
-		},
-		{
-			"path": "../hrla37-review"
-		},
-		{
-			"path": "../hrla37-mini-apps-1/challenge_3"
-		},
-		{
-			"path": "../mysql-review"
-		},
-		{
-			"path": "../hrla37-grocery-list"
 		}
 	],
 	"settings": {

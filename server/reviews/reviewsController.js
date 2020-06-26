@@ -37,12 +37,21 @@ const controller = {
       }
     });
   },
-  postHelpful: (req, res)=>{
-    model.postHelpful(req.params.productId, req.body, (err, result)=>{
+  postUpVote: (req, res)=>{
+    model.postUpVote(req.params.reviewId, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send('Successful post!');
+        res.status(200).send('Successful up vote!');
+      }
+    });
+  },
+  postDownVote: (req, res)=>{
+    model.postDownVote(req.params.reviewId, (err, result)=>{
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send('Successful down vote!');
       }
     });
   }

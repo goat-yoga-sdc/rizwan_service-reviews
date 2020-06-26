@@ -19,7 +19,11 @@ router
   .get(controller.getByAgeRange);
 
 router
-  .route('/:reviewId/:helpful')
-  .post(controller.postHelpful);
+  .route('/:reviewId/upVote')
+  .post(controller.postUpVote);
+
+router
+  .route('/:reviewId/downVote')
+  .post(controller.postDownVote);
 
 module.exports = router;

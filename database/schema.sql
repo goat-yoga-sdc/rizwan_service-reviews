@@ -26,7 +26,9 @@ CREATE TABLE reviews(
   reviewText TEXT,
   rating FLOAT (2, 1) NULL,
   bottomLine VARCHAR(200),
-  helpfulPeeps VARCHAR(100),
+  votes_down INT,
+  votes_up INT,
+  verified_buyer BOOLEAN,
   reviewTime VARCHAR(100),
   FOREIGN KEY (user_id)
     REFERENCES users(id)

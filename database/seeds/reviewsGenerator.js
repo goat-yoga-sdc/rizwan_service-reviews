@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 //This file generates the rest of the review data in our review object
 const randomReviewText = require('./reviewTextGenerator.js');
 const faker = require('faker');
@@ -54,12 +55,16 @@ const randomRating = () => {
 // console.log(randomRating());
 // };
 
+//Will return true 20% of the time
+const randomVerifiedBuyer = () => Math.random() < 0.2;
+
 const randomHelpful = () =>{
   //get total number of votes
   let totalVotes = getRandomValue(2, 80);
   //get number of those votes who found review helpful
-  let numberOfHelpful = getRandomValue(1, totalVotes);
-  let helpfulPeeps = [numberOfHelpful, totalVotes];
+  let votes_up = getRandomValue(1, totalVotes);
+  let votes_down = totalVotes - votes_up;
+  let helpfulPeeps = [votes_up, votes_down];
   return helpfulPeeps;
 };
 
@@ -77,6 +82,7 @@ const randomDate = () => {
 };
 
 const randomReview = (numberOfUsers, productName, productId)=>{
+  let [votes_up, votes_down] = randomHelpful();
   let newReview = {
     productId: productId,
     productName: productName,
@@ -86,8 +92,11 @@ const randomReview = (numberOfUsers, productName, productId)=>{
     reviewText: randomReviewText(productName),
     rating: randomRating(),
     bottomLine: randomBottomLine(),
-    helpfulPeeps: randomHelpful(),
+    votes_down: votes_down,
+    votes_up: votes_up,
+    verified_buyer: randomVerifiedBuyer(),
     reviewTime: randomDate()
+
   };
   return newReview;
 };
