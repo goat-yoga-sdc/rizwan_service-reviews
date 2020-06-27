@@ -45,7 +45,7 @@ class ReviewsEntry extends React.Component {
       <article className='review-article'>
         <section>
           <div className='review-user-info'>
-            <p className='review-display-name'>{this.props.review.firstName}</p>
+            <p className='review-display-name'>{this.props.review.firstName} {this.props.review.lastName.slice(0, 1)}.</p>
             <time>{this.props.review.reviewTime}</time>
             <p className="review-display-location">{this.props.review.place}</p>
             <ul className="review-user">

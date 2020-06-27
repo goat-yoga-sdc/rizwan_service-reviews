@@ -1,3 +1,17 @@
+@font-face {font-family: "Apercu Pro"; src: url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.eot"); src:
+  url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.svg#Apercu Pro") format("svg"); }
+
+@font-face {font-family: "Apercu Pro"; src: url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.eot"); src:
+  url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.svg#Apercu Pro") format("svg");
+  font-weight: bold; }
 /*reset CSS */
 * {
   box-sizing: border-box;
@@ -5,6 +19,7 @@
 
 body {
   font-family: 'Apercu Pro', -apple-system, Helvetica, Arial, sans-serif !important;
+  font-size: 16px;
   line-height: 1.5;
   margin: 0;
 }
@@ -34,7 +49,7 @@ ul {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   max-width: 300px;
   font-weight: 700;
@@ -339,6 +354,8 @@ p.helpful {
   width: fit-content;
   list-style: none;
   padding-top: 15px;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 /* review content */
