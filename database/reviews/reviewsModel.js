@@ -26,7 +26,7 @@ const model = {
     }
   },
   getBySkinType: (id, callback)=>{
-    db.query(``, (err, result) =>{
+    db.query('', (err, result) =>{
       if (err) {
         console.log(err);
         callback(err, null);
@@ -36,7 +36,7 @@ const model = {
     });
   },
   getBySkinShade: (id, callback)=>{
-    db.query(``, (err, result) =>{
+    db.query('', (err, result) =>{
       if (err) {
         console.log(err);
         callback(err, null);
@@ -46,7 +46,7 @@ const model = {
     });
   },
   getByAgeRange: (id, callback)=>{
-    db.query(``, (err, result) =>{
+    db.query('', (err, result) =>{
       if (err) {
         console.log(err);
         callback(err, null);

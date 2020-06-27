@@ -1,13 +1,45 @@
 import React from 'react';
+import axios from 'axios';
 import StarRatings from 'react-star-ratings';
 
 class ReviewsEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      votesUp: this.props.review.votes_up,
+      votesDown: this.props.review.votes_down
     };
+    this.upVote = this.upVote.bind(this);
+    this.downVote = this.downVote.bind(this);
   }
+
+  upVote() {
+    axios
+      .post(`/reviews/${this.props.review.reviewId}/upVote`)
+      .then((data)=>{
+        console.log(data.data);
+        this.setState({
+          votesUp: this.state.votesUp + 1
+        });
+      })
+      .catch((err)=>{
+        console.error(err);
+      });
+  }
+
+  downVote() {
+    axios
+      .post(`/reviews/${this.props.review.reviewId}/downVote`)
+      .then((success)=>{
+        this.setState({
+          votesDown: this.state.votesDown + 1
+        });
+      })
+      .catch((err)=>{
+        console.error(err);
+      });
+  }
+
   render() {
     return (
       <article className='review-article'>
@@ -47,22 +79,22 @@ class ReviewsEntry extends React.Component {
             </p>
             <p className="review-footer-container">
               <span className="review-footer-text">Was this review helpful to you?</span>
-              <button aria-label="Click to give this review a helpful vote" className="button--transparent">
+              <button aria-label="Click to give this review a helpful vote" className="button--transparent" onClick={this.upVote}>
                 <div direction="top" className="up-arrow">
                   <svg aria-hidden="false" width="14px" height="14px" viewBox="0 0 18 17">
                     <path d="M8.199 3.247L1.603 9.842.53 8.77l8.5-8.5.198.2 8.041 8.04-1.133 1.133-6.335-6.335V16.5H8.199z"></path>
                   </svg>
                 </div>
               </button>
-              <span size="5" className="helpful">{this.props.review.votes_up}</span>
-              <button aria-label="Click to give this review a not helpful vote" className="button--transparent">
+              <span size="5" className="helpful">{this.state.votesUp}</span>
+              <button aria-label="Click to give this review a not helpful vote" className="button--transparent" onClick={this.downVote}>
                 <div direction="bottom" className="down-arrow">
                   <svg aria-hidden="false" width="14px" height="14px" viewBox="0 0 18 17">
                     <path d="M8.199 3.247L1.603 9.842.53 8.77l8.5-8.5.198.2 8.041 8.04-1.133 1.133-6.335-6.335V16.5H8.199z"></path>
                   </svg>
                 </div>
               </button>
-              <span size="5" className="helpful">{this.props.review.votes_down}</span>
+              <span size="5" className="helpful">{this.state.votesDown}</span>
             </p>
           </footer>
 

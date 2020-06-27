@@ -45,9 +45,9 @@ class App extends React.Component {
   calculateAvgRating() {
     //iterate over each review and extract the rating value, add them together, then divide by the totalReviews
     let total = this.state.reviews.reduce((accumulator, currentValue) => accumulator + currentValue.rating, 0);
-    console.log(total);
+    // console.log(total);
     let avgRating = (total / this.state.reviews.length).toPrecision(2);
-    console.log(avgRating);
+    // console.log(avgRating);
     this.setState({
       avgRating: parseFloat(avgRating)
     });

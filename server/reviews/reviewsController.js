@@ -42,7 +42,7 @@ const controller = {
       if (err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send('Successful up vote!');
+        res.status(200).json(result);
       }
     });
   },
@@ -51,7 +51,7 @@ const controller = {
       if (err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send('Successful down vote!');
+        res.status(200).json(result);
       }
     });
   }
