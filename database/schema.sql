@@ -33,5 +33,6 @@ CREATE TABLE reviews(
   FOREIGN KEY (user_id)
     REFERENCES users(id)
     ON DELETE CASCADE,
-  PRIMARY KEY(reviewId)
+  PRIMARY KEY(reviewId),
+  FULLTEXT (productName, reviewTitle, reviewText, bottomLine)
 );

@@ -10,8 +10,17 @@ const controller = {
       }
     });
   },
+  searchReviews: (req, res)=>{
+    model.searchReviews(req.params.productId, req.params.queryStr, (err, result)=>{
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).json(result);
+      }
+    });
+  },
   getBySkinType: (req, res)=>{
-    model.getBySkinType(req.params.productId, (err, result)=>{
+    model.getBySkinType(req.params.productId, req.params.skinType, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
@@ -20,7 +29,7 @@ const controller = {
     });
   },
   getBySkinShade: (req, res)=>{
-    model.getBySkinShade(req.params.productId, (err, result)=>{
+    model.getBySkinShade(req.params.productId, req.params.skinShade, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {
@@ -29,7 +38,7 @@ const controller = {
     });
   },
   getByAgeRange: (req, res)=>{
-    model.getByAgeRange(req.params.productId, (err, result)=>{
+    model.getByAgeRange(req.params.productId, req.params.ageRange, (err, result)=>{
       if (err) {
         res.status(400).send(err);
       } else {

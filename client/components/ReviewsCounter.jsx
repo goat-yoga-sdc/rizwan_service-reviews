@@ -8,7 +8,7 @@ const ReviewsCounter = (props) => {
       <StarRatings
         rating={props.avgRating}
         numberOfStars={5}
-        starDimension={'25px'}
+        starDimension={'28px'}
         starSpacing={'1px'}
         starRatedColor={'#000000'}
         starEmptyColor={'#ffffff'}

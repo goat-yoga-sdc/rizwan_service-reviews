@@ -7,15 +7,19 @@ router
   .get(controller.getByProdId);
 
 router
-  .route('/:productId/skinType')
+  .route('/:productId/:queryStr')
+  .get(controller.searchReviews);
+
+router
+  .route('/:productId/skinType/:skinType')
   .get(controller.getBySkinType);
 
 router
-  .route('/:productId/skinShade')
+  .route('/:productId/skinShade/:skinShade')
   .get(controller.getBySkinShade);
 
 router
-  .route('/:productId/ageRange')
+  .route('/:productId/ageRange/:ageRange')
   .get(controller.getByAgeRange);
 
 router
