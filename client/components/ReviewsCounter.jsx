@@ -3,7 +3,7 @@ import StarRatings from 'react-star-ratings';
 
 const ReviewsCounter = (props) => {
   return (
-    <div className='counter-header'>
+    <div className='counter-header' id='scrollTop'>
       <h3 className='counter-header-rating'>{props.avgRating}</h3>
       <StarRatings
         rating={props.avgRating}

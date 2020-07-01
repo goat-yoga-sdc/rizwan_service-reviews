@@ -28,11 +28,13 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jquery": "^3.5.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "react": "^16.13.1",
     "react-clamp-lines": "^3.0.2",
     "react-dom": "^16.13.1",
+    "react-js-pagination": "^3.0.3",
     "react-star-ratings": "^2.3.0"
   },
   "devDependencies": {

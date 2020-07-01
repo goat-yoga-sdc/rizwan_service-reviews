@@ -1,10 +1,11 @@
+/* regular font */
 @font-face {font-family: "Apercu Pro"; src: url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.eot"); src:
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.eot?#iefix") format("embedded-opentype"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.woff2") format("woff2"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.woff") format("woff"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.ttf") format("truetype"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.svg#Apercu Pro") format("svg"); }
-
+/* bold font */
 @font-face {font-family: "Apercu Pro"; src: url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.eot"); src:
   url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.eot?#iefix") format("embedded-opentype"),
   url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.woff2") format("woff2"),
@@ -12,6 +13,7 @@
   url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.ttf") format("truetype"),
   url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.svg#Apercu Pro") format("svg");
   font-weight: bold; }
+
 /*reset CSS */
 * {
   box-sizing: border-box;
@@ -292,6 +294,56 @@ path.star {
   margin-bottom: 10px;
 }
 
+button.readAll {
+  font-family: "Apercu Pro", -apple-system, BlinkMacSystemFont, Helvetica, "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  line-height: 16px;
+  text-align: left;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background: transparent;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  padding: 0px;
+  text-decoration: none;
+  margin: 16px auto 0px;
+}
+
+button.readAll div {
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+button.readAll span:first-child {
+  color: rgb(0, 0, 0);
+  font-family: "Apercu Pro", -apple-system, BlinkMacSystemFont, Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-style: inherit;
+  font-weight: 400;
+  white-space: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0px;
+}
+
+button.readAll span:last-child {
+  color: rgb(0, 0, 0);
+  font-family: "Apercu Pro", -apple-system, BlinkMacSystemFont, Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-style: inherit;
+  font-weight: 400;
+  white-space: normal;
+  font-size: 11px;
+  line-height: 11px;
+  position: relative;
+  bottom: 1px;
+  left: 2px;
+  display: inline-block;
+  margin: 0px;
+}
+
 /* */
 p.helpful {
   font-style: inherit;
@@ -512,4 +564,50 @@ span.helpful {
   margin: 29px 0 0;
   padding: 0;
   font-weight: 400;
+}
+
+/* pagination styling */
+.reviews-scroll-to-top {
+  color: #00f;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  width: auto;
+  flex: 0 0 100%;
+  text-transform: none;
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+  margin: 0;
+  padding: 0;
+
+}
+
+ul.pagination {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex: 0 0 100%;
+}
+
+ul.pagination li {
+  /* min-height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; */
+  width: 100%;
+}
+
+ul.pagination a {
+  color: rgb(0, 0, 255);
+  font-size: 14px;
+  min-height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+ul.pagination .active {
+  display: none;
 }

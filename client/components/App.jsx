@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 import HighlightsList from './HighlightsList.jsx';
 import ReviewsCounter from './ReviewsCounter.jsx';
 import ReviewsSearch from './ReviewsSearch.jsx';
-import ReviewsEntry from './ReviewsEntry.jsx';
+import ReviewsList from './ReviewsList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +15,9 @@ class App extends React.Component {
       totalReviews: 0,
       reviews: [],
       searchPerformed: false,
-      searchResults: []
+      searchResults: [],
+      currentPageOfReviews: [],
+      activePage: 1
     };
     this.setAppState = this.setAppState.bind(this);
     this.getReviews = this.getReviews.bind(this);
@@ -22,6 +25,7 @@ class App extends React.Component {
     this.clearFilters = this.clearFilters.bind(this);
     this.calculateTotalReviews = this.calculateTotalReviews.bind(this);
     this.calculateAvgRating = this.calculateAvgRating.bind(this);
+    this.scrollToReviewsList = this.scrollToReviewsList.bind(this);
   }
 
   setAppState(property, data) {
@@ -29,18 +33,6 @@ class App extends React.Component {
       [property]: data
     });
   }
-
-  // setSearchResults(data) {
-  //   this.setState({
-  //     searchResults: data
-  //   });
-  // }
-
-  // setReviews(data) {
-  //   this.setState({
-  //     reviews: data
-  //   });
-  // }
 
   setSearchPerformed() {
     if (this.state.searchPerformed === false) {
@@ -61,7 +53,9 @@ class App extends React.Component {
       .get(`/reviews/${this.state.productId}`)
       .then((data)=>{
         this.setState({
-          reviews: data.data
+          reviews: data.data,
+          currentPageOfReviews: data.data.slice(0, 10),
+          activePage: 1
         });
       })
       .then(()=>{
@@ -90,9 +84,13 @@ class App extends React.Component {
     });
   }
 
+  scrollToReviewsList() {
+    let position = $('#scrollTop').offset();
+    $('html, body').animate({ scrollTop: (position.top - 130)}, 1000);
+  }
+
   componentDidMount() {
     this.getReviews();
-    // setInterval(this.getMessages, 20000);
   }
 
   render() {
@@ -103,25 +101,13 @@ class App extends React.Component {
           <div className='productImage'></div>
           <div className='productHighlights-wrapper'>
             <div className='productDetail'></div>
-            <HighlightsList totalReviews={this.state.totalReviews} reviews={this.state.reviews.slice(0, 3)}/>
+            <HighlightsList totalReviews={this.state.totalReviews} reviews={this.state.reviews.slice(0, 3)} scrollToReviewsList={this.scrollToReviewsList}/>
           </div>
         </div>
         <div className='reviews-wrapper'>
           <ReviewsCounter totalReviews={this.state.totalReviews} avgRating={this.state.avgRating}/>
-          <ReviewsSearch productId={this.state.productId} setAppState={this.setAppState} setSearchPerformed={this.setSearchPerformed} calculateTotalReviews={this.calculateTotalReviews} calculateAvgRating={this.calculateAvgRating}/>
-          <div className='review-list'>
-            {!this.state.searchPerformed ?
-              this.state.reviews.map((review, index)=>(
-                <ReviewsEntry
-                  key={index}
-                  review={review}
-                />)) : this.state.searchResults.length ?
-                this.state.searchResults.map((review, index)=>(
-                  <ReviewsEntry
-                    key={index}
-                    review={review}
-                  />)) : <h3 className='noResults'>Sorry, no results were found</h3>}
-          </div>
+          <ReviewsSearch productId={this.state.productId} reviews={this.state.reviews} setAppState={this.setAppState} setSearchPerformed={this.setSearchPerformed} calculateTotalReviews={this.calculateTotalReviews} calculateAvgRating={this.calculateAvgRating}/>
+          <ReviewsList reviews={this.state.reviews} searchResults={this.state.searchResults} searchPerformed={this.state.searchPerformed} currentPageOfReviews={this.state.currentPageOfReviews} activePage={this.state.activePage} setAppState={this.setAppState} scrollToReviewsList={this.scrollToReviewsList}/>
         </div>
       </div>
     );

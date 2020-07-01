@@ -21,6 +21,7 @@ class ReviewsSearch extends React.Component {
 
   clearFilters() {
     this.props.setAppState('searchPerformed', false);
+    this.props.setAppState('currentPageOfReviews', this.props.reviews.slice(0, 10));
     document.getElementById('review-search').value = '';
     document.getElementById('reviews-sort').value = 'Default';
     document.getElementById('skinType').value = 'Default';
@@ -34,6 +35,8 @@ class ReviewsSearch extends React.Component {
       .then((data)=>{
         this.props.setAppState('searchResults', data.data);
         this.props.setSearchPerformed();
+        this.props.setAppState('currentPageOfReviews', data.data.slice(0, 10));
+        this.props.setAppState('activePage', 1);
       })
       .catch((err)=>{
         console.error(err);
@@ -46,6 +49,8 @@ class ReviewsSearch extends React.Component {
       .then((data)=>{
         this.props.setAppState('searchResults', data.data);
         this.props.setSearchPerformed();
+        this.props.setAppState('currentPageOfReviews', data.data.slice(0, 10));
+        this.props.setAppState('activePage', 1);
       })
       .catch((err)=>{
         console.error(err);
