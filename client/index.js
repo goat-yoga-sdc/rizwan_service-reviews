@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import ReviewHighlights from './components/ReviewHighlights.jsx';
+import Reviews from './components/App.jsx';
 
 
-
-ReactDOM.render(<App/>, document.getElementById('Reviews'));
+ReactDOM.render(<ReviewHighlights/>, document.getElementById('Highlights'));
+ReactDOM.render(<Reviews/>, document.getElementById('Reviews'));

@@ -7,7 +7,7 @@ const reviewsRouter = require('./reviews/reviewsRouter');
 const usersRouter = require('./users/usersRouter');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));

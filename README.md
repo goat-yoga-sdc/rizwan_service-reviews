@@ -34,4 +34,8 @@ From within the root directory:
 ```sh
 npm install -g webpack
 npm install
+npm start
+npm run build
+mysql -u root -p <schema.sql
+npm run seedDb
 ```

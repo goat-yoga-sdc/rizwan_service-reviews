@@ -27,13 +27,12 @@ class HighlightsList extends React.Component {
           <div id='reviews-accordion'>
             <h3>Review Highlights</h3>
             <ul>
-              {this.props.reviews.map((review, index)=>(
+              {this.props.highlights.map((review, index)=>(
                 <HighlightsEntry
                   key={index}
                   review={review}
                 />))}
             </ul>
-            {/* <button className='button--transparent readAll' onClick={this.props.scrollToReviewsList}>Read All Reviews↓</button> */}
             <button display="flex" width="100%" className='readAll' onClick={this.props.scrollToReviewsList}>
               <div>
                 <span>Read All Reviews</span>

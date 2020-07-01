@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import $ from 'jquery';
-import HighlightsList from './HighlightsList.jsx';
 import ReviewsCounter from './ReviewsCounter.jsx';
 import ReviewsSearch from './ReviewsSearch.jsx';
 import ReviewsList from './ReviewsList.jsx';
@@ -96,14 +95,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className='main-wrapper'>
-          <div className='gutter-left'></div>
-          <div className='productImage'></div>
-          <div className='productHighlights-wrapper'>
-            <div className='productDetail'></div>
-            <HighlightsList totalReviews={this.state.totalReviews} reviews={this.state.reviews.slice(0, 3)} scrollToReviewsList={this.scrollToReviewsList}/>
-          </div>
-        </div>
         <div className='reviews-wrapper'>
           <ReviewsCounter totalReviews={this.state.totalReviews} avgRating={this.state.avgRating}/>
           <ReviewsSearch productId={this.state.productId} reviews={this.state.reviews} setAppState={this.setAppState} setSearchPerformed={this.setSearchPerformed} calculateTotalReviews={this.calculateTotalReviews} calculateAvgRating={this.calculateAvgRating}/>
