@@ -7,6 +7,10 @@ router
   .get(controller.getByProdId);
 
 router
+  .route('/:productId/sort/:sortBy')
+  .get(controller.getByProdIdSort);
+
+router
   .route('/:productId/:queryStr')
   .get(controller.searchReviews);
 

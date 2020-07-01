@@ -72,14 +72,14 @@ class ReviewsSearch extends React.Component {
           </button>
         </div>
         <div className="reviews-filter">
-          <select aria-label="Sort by" id="reviews-sort" className="select" defaultValue="Default">
+          <select aria-label="Sort by" id="reviews-sort" className="select" defaultValue="Default" onChange={(e)=>this.searchByFilter(e, 'sort')}>
             <option value="Default" disabled hidden>Sort by</option>
             <option value="1">Most Recent</option>
             <option value="2">Oldest</option>
             <option value="3">Lowest Rated</option>
             <option value="4">Highest Rated</option>
             <option value="5">Most Helpful</option>
-            <option value="6">Images</option>
+            {/* <option value="6">Images</option> */}
           </select>
         </div>
         <span className="reviews-filter-container">

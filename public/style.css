@@ -46,6 +46,10 @@ ul {
   padding: 0px;
 }
 
+button {
+  outline: none;
+}
+
 .input {
   border: 0;
   border-radius: 0;

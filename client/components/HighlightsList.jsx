@@ -34,10 +34,10 @@ class HighlightsList extends React.Component {
                 />))}
             </ul>
             {/* <button className='button--transparent readAll' onClick={this.props.scrollToReviewsList}>Read All Reviews↓</button> */}
-            <button display="flex" width="100%" text-decoration="none" className='readAll' onClick={this.props.scrollToReviewsList}>
-              <div className="sc-fYiAbW ilUvsk">
-                <span className="sc-jzJRlG eQLnfh">Read All Reviews</span>
-                <span display="inline-block" size="1" className="sc-jzJRlG kuPHJV">↓</span>
+            <button display="flex" width="100%" className='readAll' onClick={this.props.scrollToReviewsList}>
+              <div>
+                <span>Read All Reviews</span>
+                <span display="inline-block" size="1">↓</span>
               </div>
             </button>
           </div>

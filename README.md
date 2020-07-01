@@ -4,10 +4,9 @@ A reviews module to be used as part of our 'Glossier' product page implementatio
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/Dumpling-Squad/nav-bar
+  - https://github.com/Dumpling-Squad/product-description
+  - https://github.com/Dumpling-Squad/suggested-items
 
 ## Table of Contents
 

@@ -25,6 +25,17 @@ const model = {
       });
     }
   },
+  getBySkinType: (id, skinType, callback)=>{
+    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND skinType="${skinType}";`, (err, result) =>{
+      if (err) {
+        console.log(err);
+        callback(err, null);
+      } else {
+        // console.log('result by skinType :', result);
+        callback(null, result);
+      }
+    });
+  },
   searchReviews: (id, queryString, callback)=>{
     console.log(id, queryString);
     db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId=${id} AND MATCH (productName, reviewTitle, reviewText, bottomLine) AGAINST ("${queryString}" IN NATURAL LANGUAGE MODE);`, (err, result) =>{
@@ -32,18 +43,18 @@ const model = {
         console.error(err);
         callback(err, null);
       } else {
-        console.log('query result:', result);
+        // console.log('query result:', result);
         callback(null, result);
       }
     });
   },
-  getBySkinType: (id, skinType, callback)=>{
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND skinType="${skinType}";`, (err, result) =>{
+  getByProdIdSort: (id, column, order, callback)=>{
+    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" ORDER BY ${column} ${order};`, (err, result) =>{
       if (err) {
         console.log(err);
         callback(err, null);
       } else {
-        console.log('result by skinType :', result);
+        // console.log(`result ordered by ${column}, ${order} :`, result);
         callback(null, result);
       }
     });
