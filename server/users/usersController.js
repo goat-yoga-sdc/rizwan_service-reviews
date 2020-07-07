@@ -1,4 +1,4 @@
-const model = require('../../database/users/usersModel.js');
+const model = require('../../db/users/usersModel.js');
 
 const controller = {
   getUser: (req, res)=>{

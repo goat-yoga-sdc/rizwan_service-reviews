@@ -7,7 +7,7 @@
     "start": "nodemon ./server/index.js",
     "test": "jest --coverage",
     "build": "webpack -w -d",
-    "seedDb": "node ./database/seeds/"
+    "seed": "node ./db/seeds/"
   },
   "repository": {
     "type": "git",

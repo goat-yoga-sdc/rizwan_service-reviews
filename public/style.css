@@ -160,19 +160,18 @@ path.star {
 
 /* */
 .header {
-  background-image: url('./img/header.png');
-  height: 130px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 0px;
+  height: 140px;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.productDetail {
-  background-image: url('./img/productDetail.png');
+/* .productDetail {
   background-repeat: no-repeat;
   min-height: 600px;
-
-}
+} */
 
 .main-wrapper {
   box-sizing: border-box;
@@ -180,7 +179,7 @@ path.star {
   display: flex;
   flex-wrap: wrap;
   flex: 0 1 auto;
-  margin: 0 -16px;
+  margin: 16px 64px 0;
 }
 
 .gutter-left {
@@ -195,19 +194,19 @@ path.star {
 }
 
 .productImage {
-  background-image: url('./img/productImage.png');
   background-repeat: no-repeat;
-  min-height: 516px;
+  /* min-height: 516px; */
   height: 100%;
   padding: 0 16px;
   position: sticky;
-  top: 96px;
+  top: 156px;
   -webkit-box-flex: 0;
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 41.6667%;
   width: 41.6667%;
   max-width: 41.6667%;
+  margin-bottom: 16px;
 }
 
 .productHighlights-wrapper {
@@ -292,6 +291,8 @@ path.star {
   padding: 16px;
   background: rgb(255, 255, 255);
   border-radius: 3px;
+  list-style-type: none;
+  list-style-position: unset;
 }
 
 #reviews-accordion ul > li:not(:last-child) {
@@ -331,6 +332,7 @@ button.readAll span:first-child {
   font-size: 16px;
   line-height: 24px;
   margin: 0px;
+  text-decoration: none;
 }
 
 button.readAll span:last-child {
@@ -556,6 +558,7 @@ span.helpful {
 
 .reviews-filter-container {
   display: inherit;
+  text-decoration: none;
 }
 
 .review-clear-filters {
