@@ -36,6 +36,6 @@ npm install -g webpack
 npm install
 npm start
 npm run build
-mysql -u root -p <schema.sql
+mysql -u root -p < db/schema.sql
 npm run seed
 ```

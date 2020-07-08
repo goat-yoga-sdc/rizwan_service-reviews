@@ -19,19 +19,19 @@ const controller = {
     if (req.params.sortBy === '1') {
       column = 'reviewTime';
       order = 'DESC';
-    // Oldest
+      // Oldest
     } else if (req.params.sortBy === '2') {
       column = 'reviewTime';
       order = 'ASC';
-    // Lowest Rated
+      // Lowest Rated
     } else if (req.params.sortBy === '3') {
       column = 'rating';
       order = 'ASC';
-    // Highest Rated
+      // Highest Rated
     } else if (req.params.sortBy === '4') {
       column = 'rating';
       order = 'DESC';
-    // Most Helpful
+      // Most Helpful
     } else if (req.params.sortBy === '5') {
       column = 'votes_up';
       order = 'DESC';
@@ -98,6 +98,21 @@ const controller = {
       }
     });
   },
+  postNewReview: (req, res) => {
+    // req.body must have a key called 'reviewText'.
+    model.postNewReview(req.body, req.params.productId, (err, result) => {
+      (err) ?
+        res.status(400).send(err) :
+        res.status(200).send('successful post');
+    });
+  },
+  deleteReviewById: (req, res) => {
+    model.deleteReviewById(req.params.reviewId, (err, result) => {
+      (err) ?
+        res.status(400).send(err) :
+        res.status(200).send('deleted post');
+    });
+  }
 };
 
 module.exports = controller;
