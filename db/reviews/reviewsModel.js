@@ -1,6 +1,8 @@
 const db = require('../index.js');
+const reviewGenerator = require('../seeds/reviewsGenerator.js');
 // Id must be analyzed to see if it is a numeric id, or a product name. Based on this, one of 2 query strings will be chosen.
 const model = {
+  reviewObj: {},
   getByProdId: (id, callback) => {
     // Execute query by product ID if id is  number
     if (parseInt(id) !== NaN) {
@@ -109,6 +111,13 @@ const model = {
       }
     });
   },
+  postNewReview: (body, id, callback) => {
+    let queryStr = `INSERT INTO reviews (productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime) VALUES (${id}, "Lash Stick", 3, "A waste of practical Lash Stick!", "${body.reviewText}", 2.2, "No - I would not recommend this to a friend", 13, 5, false, "5/1/2011");`;
+
+    db.query(queryStr, (err, result) => {
+      (err) ? callback(err, null) : callback(null, result);
+    });
+  }
 };
 
 module.exports = model;

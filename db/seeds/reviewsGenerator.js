@@ -115,9 +115,10 @@ const createReviews = (numberOfProducts, numberOfUsers, avgReviewsPerProduct) =>
       reviewsArr.push(randomReview(numberOfUsers, name, id));
     }
   });
+  console.log(reviewsArr)
   return reviewsArr;
 };
 
-// console.log(createReviews(10, 40, 8));
+// console.log(createReviews(3, 10, 4));
 
 module.exports = createReviews;

@@ -27,12 +27,18 @@ router
   .route('/:productId/ageRange/:ageRange')
   .get(controller.getByAgeRange);
 
+// vote control are update operations
+// even though it has post in it's name
 router
   .route('/:reviewId/upVote')
-  .post(controller.postUpVote);
+  .put(controller.postUpVote);
 
 router
   .route('/:reviewId/downVote')
-  .post(controller.postDownVote);
+  .put(controller.postDownVote);
+
+router
+  .route('/newPost/:productId')
+  .post(controller.postNewReview);
 
 module.exports = router;
