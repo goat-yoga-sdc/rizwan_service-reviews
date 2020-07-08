@@ -41,4 +41,8 @@ router
   .route('/newPost/:productId')
   .post(controller.postNewReview);
 
+router
+  .route('/:reviewId/delete')
+  .delete(controller.deleteReviewById);
+
 module.exports = router;

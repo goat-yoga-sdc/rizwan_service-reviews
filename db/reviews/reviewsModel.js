@@ -117,6 +117,13 @@ const model = {
     db.query(queryStr, (err, result) => {
       (err) ? callback(err, null) : callback(null, result);
     });
+  },
+  deleteReviewById: (id, callback) => {
+    let queryStr = `DELETE FROM reviews WHERE reviewId = ${id};`
+
+    db.query(queryStr, (err, result) => {
+      (err) ? callback(err, null) : callback(null, result);
+    });
   }
 };
 

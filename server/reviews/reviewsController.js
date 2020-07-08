@@ -105,6 +105,13 @@ const controller = {
         res.status(400).send(err) :
         res.status(200).send('successful post');
     });
+  },
+  deleteReviewById: (req, res) => {
+    model.deleteReviewById(req.params.reviewId, (err, result) => {
+      (err) ?
+        res.status(400).send(err) :
+        res.status(200).send('deleted post');
+    });
   }
 };
 
