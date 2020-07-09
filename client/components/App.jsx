@@ -25,11 +25,11 @@ class App extends React.Component {
     this.calculateTotalReviews = this.calculateTotalReviews.bind(this);
     this.calculateAvgRating = this.calculateAvgRating.bind(this);
     this.scrollToReviewsList = this.scrollToReviewsList.bind(this);
-    this.getProductId = this.getProductId.bind(this);
+    // this.getProductId = this.getProductId.bind(this);
   }
 
   componentDidMount() {
-    this.getProductId();
+    this.getReviews();
   }
 
   setAppState(property, data) {
