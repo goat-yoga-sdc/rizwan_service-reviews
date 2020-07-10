@@ -45,6 +45,7 @@ CREATE TABLE reviews(
 
 --  CREATE TABLE reviews(
 --    id INT PRIMARY KEY,
+--    product_id INT,
 --    reviewTitle VARCHAR(255),
 --    reviewText TEXT,
 --    rating FLOAT (2, 1) NULL,
@@ -59,7 +60,6 @@ CREATE TABLE reviews(
 --    place VARCHAR(255),
 --    skinType VARCHAR(255),
 --    skinShade VARCHAR(255),
---    product_id INT,
 --    FOREIGN KEY (product_id)
 --      REFERENCES products(id),
 --    FULLTEXT (productName, reviewTitle, reviewText, bottomLine)

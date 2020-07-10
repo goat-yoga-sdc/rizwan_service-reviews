@@ -3,6 +3,10 @@
 const faker = require('faker');
 const randomReviewText = require('./reviewTextGenerator.js');
 
+const skinTypes = ['Combination', 'Normal', 'Dry', 'Oily'];
+const ageRanges = ['17-24', '25-30', '31-40', '41-50', '51-60', '60 & Up'];
+const skinShades = ['Light', 'Medium', 'Deep', 'Rich'];
+
 // Helper functions to randomly generate review data
 const getRandomValue = (min, max) => {
   min = Math.ceil(min);
@@ -84,11 +88,9 @@ const randomDate = () => {
 
 const randomReview = (numberOfUsers, productName, productId) => {
   const [votes_up, votes_down] = randomHelpful();
-  const newReview = {
-    productId,
-    productName,
-    // eslint-disable-next-line camelcase
-    user_id: randomUserId(numberOfUsers),
+  let newReviews = {
+    id: 0,
+    product_id: 0,
     reviewTitle: randomReviewTitle(productName),
     reviewText: randomReviewText(productName),
     rating: randomRating(),
@@ -97,10 +99,35 @@ const randomReview = (numberOfUsers, productName, productId) => {
     votes_up,
     verified_buyer: randomVerifiedBuyer(),
     reviewTime: randomDate(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    ageRange: ageRanges[Math.floor(Math.random() * ageRanges.length)],
+    place: `${faker.address.city()}, ${faker.address.stateAbbr()}`,
+    skinType: skinTypes[Math.floor(Math.random() * skinTypes.length)],
+    skinShade: skinShades[Math.floor(Math.random() * skinShades.length)]
+  }
 
-  };
   return newReview;
 };
+
+let newReviews = {
+  id: 0,
+  product_id: 0,
+  reviewTitle: randomReviewTitle(productName),
+  reviewText: randomReviewText(productName),
+  rating: randomRating(),
+  bottomLine: randomBottomLine(),
+  votes_down,
+  votes_up,
+  verified_buyer: randomVerifiedBuyer(),
+  reviewTime: randomDate(),
+  firstName = faker.name.firstName();
+  lastName = faker.name.lastName();
+  ageRange = ageRanges[Math.floor(Math.random() * ageRanges.length)];
+  location = `${faker.address.city()}, ${faker.address.stateAbbr()}`;
+  skinType = skinTypes[Math.floor(Math.random() * skinTypes.length)];
+  skinShade = skinShades[Math.floor(Math.random() * skinShades.length)];
+}
 
 const createReviews = (numberOfProducts, numberOfUsers, avgReviewsPerProduct) => {
   const products = randomProductsGenerator(numberOfProducts);
