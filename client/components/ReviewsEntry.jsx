@@ -15,27 +15,27 @@ class ReviewsEntry extends React.Component {
 
   upVote() {
     axios
-      .post(`/reviews/${this.props.review.reviewId}/upVote`)
-      .then((data)=>{
+      .put(`/reviews/${this.props.review.reviewId}/upVote`)
+      .then((data) => {
         console.log(data.data);
         this.setState({
           votesUp: this.state.votesUp + 1
         });
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.error(err);
       });
   }
 
   downVote() {
     axios
-      .post(`/reviews/${this.props.review.reviewId}/downVote`)
-      .then((success)=>{
+      .put(`/reviews/${this.props.review.reviewId}/downVote`)
+      .then((success) => {
         this.setState({
           votesDown: this.state.votesDown + 1
         });
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.error(err);
       });
   }
