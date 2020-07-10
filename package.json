@@ -7,7 +7,8 @@
     "start": "nodemon ./server/index.js",
     "test": "jest --coverage",
     "build": "webpack -w -d",
-    "seed": "node ./db/seeds/"
+    "seed": "node ./db/seeds/",
+    "connectDB": "node ./postgreSQL/index.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "jquery": "^3.5.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+    "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-clamp-lines": "^3.0.2",
     "react-dom": "^16.13.1",
