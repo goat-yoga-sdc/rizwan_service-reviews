@@ -137,7 +137,6 @@ const productGenerator = function (productAmount, avgReviewsPerProduct) {
 
 // let result = productGenerator(3, 2);
 // console.log(result);
-let i = 0;
 
 const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
   const products = productGenerator(numberOfProducts, avgReviewsPerProduct);
@@ -146,11 +145,10 @@ const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
   const reviewsArr = [];
   products.forEach(({ id, product_id, name }) => {
     reviewsArr.push(randomReview(name, id, product_id));
-    i++
   });
   return reviewsArr;
 };
 
-console.log(createReviews(100, 10));
+// console.log(createReviews(100, 10));
 
 module.exports = createReviews;
