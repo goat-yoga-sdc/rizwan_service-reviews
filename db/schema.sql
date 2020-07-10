@@ -36,3 +36,29 @@ CREATE TABLE reviews(
   PRIMARY KEY(reviewId),
   FULLTEXT (productName, reviewTitle, reviewText, bottomLine)
 );
+
+-- CREATE TABLE products(
+--   productId INT NOT NULL,
+--   productName VARCHAR(255),
+--   reviewId
+--
+--   FOREIGN KEY (reviewId)
+--    REFERENCES reviews(reviewId)
+--    ON DELETE CASCADE,
+--   PRIMARY KEY(productId)
+--  );
+
+--
+--  CREATE TABLE reviews(
+--   reviewId num
+--   reviewTitle VARCHAR(255),
+--   reviewText TEXT,
+--   rating FLOAT (2, 1) NULL,
+--   bottomLine VARCHAR(200),
+--   votes_down INT,
+--   votes_up INT,
+--   verified_buyer BOOLEAN,
+--   reviewTime VARCHAR(100),
+--   PRIMARY KEY(reviewId),
+--   FULLTEXT (productName, reviewTitle, reviewText, bottomLine)
+-- );
