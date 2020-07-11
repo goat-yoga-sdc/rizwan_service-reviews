@@ -20,26 +20,6 @@ const randomElement = (array) => {
   return array[randomIndex];
 };
 
-// This creates an array of product {id, name} objects, using the productTitles array copied over from Mrinal's code
-const randomProductsGenerator = (numberOfProducts) => {
-  const products = [];
-  const productTitles = ['Lipstick', 'Lip Gloss', 'Eye Lashes', 'Lotion', 'Nail Polish', 'Concealer', 'Eyeliner', 'Brushes', 'Blender', 'Lash Stick'];
-  const productsPerTitle = Math.ceil(numberOfProducts / productTitles.length);
-  for (let i = 0; i < productTitles.length; i += 1) {
-    for (let j = 0; j < productsPerTitle; j += 1) {
-      products.push({
-        id: parseInt(`${i}`),
-        product_id: parseInt(`${j}`),
-        name: productTitles[i]
-      });
-    }
-  }
-  // Will return an array of x length
-  return products;
-};
-
-const randomUserId = (numberOfUsers) => Math.floor(Math.random() * numberOfUsers);
-
 const randomReviewTitle = (productName) => {
   const opening = ['Don\'t even think about buying this', 'Loved this', 'Awesome', 'Horrible', 'Hated this', 'Great', 'You must buy this', 'A great deal for this', 'A waste of', 'Exceptionally'];
   const closing = ['.', '!', '.', '!!', '.'];
