@@ -15,8 +15,7 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
   // 6 products => 6 reviews each => ~36 reviews in total in csv file
 
   function write() {
-    let reviewList = createReviews(3, 3);
-    console.log(reviewList)
+    let reviewList = createReviews(2, 2);
     let ok = true;
     do {
       // if no reviews exist at index, change flag status.
@@ -33,7 +32,10 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
 
       let _id = id;
 
-      const data = `${_id},${product_id},${reviewTitle},${reviewText},${rating},${bottomLine},${votes_down},${votes_up},${verified_buyer},${reviewTime},${firstName},${lastName},${ageRange},${place},${skinType},${skinShade}\n`;
+      // data in csv was weird.
+      const data = `${_id}, ${product_id}, ${reviewTitle}, ${JSON.stringify(reviewText)}, ${rating}, ${bottomLine}, ${votes_down}, ${votes_up}, ${verified_buyer}, ${reviewTime}, ${firstName}, ${lastName}, ${ageRange}, ${JSON.stringify(place)}, ${skinType}, ${skinShade}\n`;
+
+      reviewIndex++;
 
       (i === 0) ?
         writer.write(data, encoding, callback) :

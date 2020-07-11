@@ -39,7 +39,7 @@ const randomReviewSentence = (productName) => {
 };
 
 const randomReviewParagraph = (productName) => {
-  let reviewParagraph = '  ';
+  let reviewParagraph = '';
   const paragraphLength = getRandomIndex(2, 3);
   for (let i = 0; i < paragraphLength; i += 1) {
     reviewParagraph += `${randomReviewSentence(productName)} `;
