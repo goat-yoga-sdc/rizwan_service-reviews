@@ -115,12 +115,8 @@ const productGenerator = function (productAmount, avgReviewsPerProduct) {
   return products;
 }
 
-// let result = productGenerator(3, 2);
-// console.log(result);
-
 const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
   const products = productGenerator(numberOfProducts, avgReviewsPerProduct);
-  // console.log(products);
   // This creates a range of the middle 50%, centered on the avg. In theory, a large enough selection will show values adhering to the avg.
   const reviewsArr = [];
   products.forEach(({ id, product_id, name }) => {
@@ -129,6 +125,6 @@ const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
   return reviewsArr;
 };
 
-// console.log(createReviews(100, 10));
+// console.log(createReviews(5, 3));
 
 module.exports = createReviews;

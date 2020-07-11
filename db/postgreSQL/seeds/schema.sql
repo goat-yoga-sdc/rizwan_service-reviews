@@ -35,5 +35,5 @@ CREATE TABLE reviews(
     REFERENCES products(id)
 );
 
-COPY products(id,productName)
-FROM '/Users/rizwanchoudhury/Desktop/Hack Reactor/Hack Reactor Actual Course Projects/SDC/Reviews-module/DB/postgreSQL/seeds/products.csv' DELIMITER ',' CSV HEADER;
+-- COPY products(id,productName)
+-- FROM '/Users/rizwanchoudhury/Desktop/Hack Reactor/Hack Reactor Actual Course Projects/SDC/Reviews-module/DB/postgreSQL/seeds/products.csv' DELIMITER ',' CSV HEADER;
