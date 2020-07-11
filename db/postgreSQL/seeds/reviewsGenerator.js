@@ -34,8 +34,8 @@ const randomBottomLine = () => {
 
 const randomRating = () => {
   const precision = 10; // 1 decimal place
-  const randomnum = Math.floor(Math.random() * (5 * precision - 1 * precision) + 1 * precision) / (1 * precision);
-  return randomnum;
+  const randomNum = Math.floor(Math.random() * (5 * precision - 1 * precision) + 1 * precision) / (1 * precision);
+  return randomNum;
 };
 // Used for testing above function
 // for (let i = 0; i < 20; i++){
