@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const writeProducts = fs.createWriteStream('users.csv');
+const writeProducts = fs.createWriteStream('products.csv');
 writeProducts.write('id,productName\n', 'utf8');
 
 const randomElement = (array) => {
@@ -32,30 +32,30 @@ const insertProducts = (productCount) => {
 
 module.exports = insertProducts;
 
-// function writeProductsToCSV(writer, encoding, callback) {
-//   let i = 10000000;
-//   let id = 0;
-//   function write() {
-//     let ok = true;
-//     do {
-//       i -= 1;
-//       id += 1;
-//       const username = faker.internet.userName();
-//       const avatar = faker.image.avatar();
-//       const data = `${id},${username},${avatar}\n`;
-//       if (i === 0) {
-//         writer.write(data, encoding, callback);
-//       } else {
-//         // see if we should continue, or wait
-//         // don't pass the callback, because we're not done yet.
-//         ok = writer.write(data, encoding);
-//       }
-//     } while (i > 0 && ok);
-//     if (i > 0) {
-//       // had to stop early!
-//       // write some more once it drains
-//       writer.once('drain', write);
-//     }
-//   }
-//   write()
-// }
+function writeProductsToCSV(writer, encoding, callback) {
+  let i = 10000000;
+  let id = 0;
+  function write() {
+    let ok = true;
+    do {
+      i -= 1;
+      id += 1;
+      const username = faker.internet.userName();
+      const avatar = faker.image.avatar();
+      const data = `${id},${username},${avatar}\n`;
+      if (i === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+        // see if we should continue, or wait
+        // don't pass the callback, because we're not done yet.
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      // had to stop early!
+      // write some more once it drains
+      writer.once('drain', write);
+    }
+  }
+  write()
+}
