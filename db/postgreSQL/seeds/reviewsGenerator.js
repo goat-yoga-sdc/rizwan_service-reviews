@@ -20,26 +20,6 @@ const randomElement = (array) => {
   return array[randomIndex];
 };
 
-// This creates an array of product {id, name} objects, using the productTitles array copied over from Mrinal's code
-const randomProductsGenerator = (numberOfProducts) => {
-  const products = [];
-  const productTitles = ['Lipstick', 'Lip Gloss', 'Eye Lashes', 'Lotion', 'Nail Polish', 'Concealer', 'Eyeliner', 'Brushes', 'Blender', 'Lash Stick'];
-  const productsPerTitle = Math.ceil(numberOfProducts / productTitles.length);
-  for (let i = 0; i < productTitles.length; i += 1) {
-    for (let j = 0; j < productsPerTitle; j += 1) {
-      products.push({
-        id: parseInt(`${i}`),
-        product_id: parseInt(`${j}`),
-        name: productTitles[i]
-      });
-    }
-  }
-  // Will return an array of x length
-  return products;
-};
-
-const randomUserId = (numberOfUsers) => Math.floor(Math.random() * numberOfUsers);
-
 const randomReviewTitle = (productName) => {
   const opening = ['Don\'t even think about buying this', 'Loved this', 'Awesome', 'Horrible', 'Hated this', 'Great', 'You must buy this', 'A great deal for this', 'A waste of', 'Exceptionally'];
   const closing = ['.', '!', '.', '!!', '.'];
@@ -54,8 +34,8 @@ const randomBottomLine = () => {
 
 const randomRating = () => {
   const precision = 10; // 1 decimal place
-  const randomnum = Math.floor(Math.random() * (5 * precision - 1 * precision) + 1 * precision) / (1 * precision);
-  return randomnum;
+  const randomNum = Math.floor(Math.random() * (5 * precision - 1 * precision) + 1 * precision) / (1 * precision);
+  return randomNum;
 };
 // Used for testing above function
 // for (let i = 0; i < 20; i++){
@@ -135,12 +115,8 @@ const productGenerator = function (productAmount, avgReviewsPerProduct) {
   return products;
 }
 
-// let result = productGenerator(3, 2);
-// console.log(result);
-
 const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
   const products = productGenerator(numberOfProducts, avgReviewsPerProduct);
-  // console.log(products);
   // This creates a range of the middle 50%, centered on the avg. In theory, a large enough selection will show values adhering to the avg.
   const reviewsArr = [];
   products.forEach(({ id, product_id, name }) => {
@@ -149,6 +125,6 @@ const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
   return reviewsArr;
 };
 
-// console.log(createReviews(100, 10));
+// console.log(createReviews(5, 3));
 
 module.exports = createReviews;
