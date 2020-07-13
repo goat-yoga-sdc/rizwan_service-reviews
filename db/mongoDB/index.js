@@ -18,7 +18,7 @@ const ProductSchema = new Schema({
   },
   productName: String,
   reviews: [{
-    review_id: {
+    reviewId: {
       type: Number,
       index: true
     },

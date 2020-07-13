@@ -44,7 +44,7 @@ function writeProductsToCSV(writer, encoding, count, callback) {
       // creates multiple reviews (~3 in this case) for each product
       for (let reviews = 0; reviews < totalReviews; reviews++) {
         let reviewObj = {
-          review_id: reviews + 1,
+          reviewId: reviews + 1,
           reviewTitle: faker.lorem.sentence(),
           reviewText: faker.lorem.paragraph(),
           rating: randomRating(),
