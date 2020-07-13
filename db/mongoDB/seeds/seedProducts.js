@@ -1,14 +1,30 @@
 const fs = require('fs');
 const faker = require('faker');
 const { randomRating, randomBottomLine, randomVerifiedBuyer, randomDate } = require('./reviewsGenerator.js');
+const Products = require('../index.js');
 
-const writeProducts = fs.createWriteStream('products.csv');
-writeProducts.write('id,productName,reviews\n', 'utf8');
+const mongoose = require('mongoose');
+let database = 'mongodb://localhost/reviewSDC';
+
+mongoose.connect(database, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}, (err) => {
+  (err) ?
+    console.log('Could not connect to mongodb') :
+    console.log('Connected to reviewSDC');
+});
+
+
+// const writeProducts = fs.createWriteStream('products.csv');
+// writeProducts.write('review_id,product_id,productName,reviewTitle,reviewText,rating,bottomLine,votes_down,votes_up,verified_buyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade\n', 'utf8');
+
 
 const randomElement = (array) => {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 };
+
 
 // lists to create product names
 const productTitles = ['Lipstick', 'Lip Gloss', 'Eye Lashes', 'Lotion', 'Nail Polish', 'Concealer', 'Eyeliner', 'Brushes', 'Blender', 'Lash Stick'];
@@ -19,6 +35,7 @@ const adjectiveList = ['Cool', 'Pretty', 'Sexy', 'Beautiful'];
 const skinTypes = ['Combination', 'Normal', 'Dry', 'Oily'];
 const ageRanges = ['17-24', '25-30', '31-40', '41-50', '51-60', '60 & Up'];
 const skinShades = ['Light', 'Medium', 'Deep', 'Rich'];
+
 
 function writeProductsToCSV(writer, encoding, count, callback) {
   let i = count;
@@ -37,33 +54,23 @@ function writeProductsToCSV(writer, encoding, count, callback) {
       // should give between 2-4 reviews per product
       let totalReviews = Math.floor(Math.random() * (5 - 2)) + 2;
 
-      let _id = id;
+      let review_id = id;
+      let product_id = id;
       let productName = `${adjective} ${color} ${product}`;
-      let reviewList = [];
-
-      // creates multiple reviews (~3 in this case) for each product
-      for (let reviews = 0; reviews < totalReviews; reviews++) {
-        let reviewObj = {
-          review_id: reviews + 1,
-          reviewTitle: faker.lorem.sentence(),
-          reviewText: faker.lorem.paragraph(),
-          rating: randomRating(),
-          bottomLine: randomBottomLine(),
-          votes_down: Math.floor(Math.random() * 20),
-          votes_up: Math.floor(Math.random() * 20),
-          verified_buyer: randomVerifiedBuyer(),
-          reviewTime: randomDate(),
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-          ageRange: randomElement(ageRanges),
-          place: `${faker.address.city()}, ${faker.address.stateAbbr()}`,
-          skinType: randomElement(skinTypes),
-          skinShade: randomElement(skinShades)
-        }
-        // this is EXACTLY like push, except 10X faster apparently!
-        // push ~'totalReviews' amount of reviews into array.
-        reviewList[reviews] = reviewObj;
-      }
+      let reviewTitle = faker.lorem.sentence();
+      let reviewText = faker.lorem.paragraph();
+      let rating = randomRating();
+      let bottomLine = randomBottomLine();
+      let votes_down = Math.floor(Math.random() * 20);
+      let votes_up = Math.floor(Math.random() * 20);
+      let verified_buyer = randomVerifiedBuyer();
+      let reviewTime = randomDate();
+      let firstName = faker.name.firstName();
+      let lastName = faker.name.lastName();
+      let ageRange = randomElement(ageRanges);
+      let place = `${faker.address.city()}, ${faker.address.stateAbbr()}`;
+      let skinType = randomElement(skinTypes);
+      let skinShade = randomElement(skinShades);
 
       const data = `${_id},${productName},${JSON.stringify(reviewList)}\n`;
       if (i === 0) {
@@ -84,6 +91,46 @@ function writeProductsToCSV(writer, encoding, count, callback) {
   console.log('done');
 }
 
-writeProductsToCSV(writeProducts, 'utf-8', 100, () => {
-  writeProducts.end();
-})
+// writeProductsToCSV(writeProducts, 'utf-8', 3, () => {
+//   writeProducts.end();
+// })
+
+let seedProductsIntoMongo = () => {
+
+  let productList = [];
+
+  // creates obj w/ name, price, img
+  for (let i = 0; i < 50; i++) {
+    let color = randomElement(colorChoice);
+    let product = randomElement(productTitles);
+    let adjective = randomElement(adjectiveList);
+
+    let productObj = {
+      review_id: i + 1,
+      product_id: Math.floor(i / 5),
+      productName: `${adjective} ${color} ${product}`,
+      reviewTitle: faker.lorem.sentence(),
+      reviewText: faker.lorem.paragraph(),
+      rating: randomRating(),
+      bottomLine: randomBottomLine(),
+      votes_down: Math.floor(Math.random() * 20),
+      votes_up: Math.floor(Math.random() * 20),
+      verified_buyer: randomVerifiedBuyer(),
+      reviewTime: randomDate(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      ageRange: randomElement(ageRanges),
+      place: `${faker.address.city()}, ${faker.address.stateAbbr()}`,
+      skinType: randomElement(skinTypes),
+      skinShade: randomElement(skinShades)
+    };
+
+    productList[i] = productObj;
+  }
+
+  Products.insertMany(productList, (err) => {
+    err ? console.log(err) : console.log('unit was seeded');
+  });
+}
+
+// seedProductsIntoMongo();

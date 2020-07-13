@@ -1,5 +1,6 @@
 const db = require('../index.js');
 const reviewGenerator = require('../seeds/reviewsGenerator.js');
+const Products = require('../index.js');
 // Id must be analyzed to see if it is a numeric id, or a product name. Based on this, one of 2 query strings will be chosen.
 const model = {
   getByProdId: (id, callback) => {
