@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const reviewsRouter = require('./reviews/reviewsRouter');
-const usersRouter = require('./users/usersRouter');
+// const usersRouter = require('./users/usersRouter');
 
 const mongoRouter = require('./routers/mongoRouter.js');
 
@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 app.use('/', express.static(path.join(`${__dirname}/../public`)));
 app.use('/reviews', reviewsRouter);
 // Users endpoint was created to be used for authorization, but currently not being used
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 
 app.use('/mongo', mongoRouter);
 
