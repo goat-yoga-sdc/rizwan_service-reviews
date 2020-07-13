@@ -1,50 +1,48 @@
-const { router } = require('express');
-const mongoController = // a file i will make later;
-
-const controller = require('./reviewsController.js');
+const router = require('express').Router();
+const mongoController = require('./mongoController.js')
 
 /* Will have just one router/controller to handle both product id or name.
 The distinction will be made in the model, where the param will be analyzed based on data type. */
 router
   .route('/:productId')
-  .get(controller.getByProdId);
+  .get(mongoController.getByProdId);
 
 router
   .route('/:productId/sort/:sortBy')
-  .get(controller.getByProdIdSort);
+  .get(mongoController.getByProdIdSort);
 
 router
   .route('/:productId/:queryStr')
-  .get(controller.searchReviews);
+  .get(mongoController.searchReviews);
 
 router
   .route('/:productId/skinType/:skinType')
-  .get(controller.getBySkinType);
+  .get(mongoController.getBySkinType);
 
 router
   .route('/:productId/skinShade/:skinShade')
-  .get(controller.getBySkinShade);
+  .get(mongoController.getBySkinShade);
 
 router
   .route('/:productId/ageRange/:ageRange')
-  .get(controller.getByAgeRange);
+  .get(mongoController.getByAgeRange);
 
 // vote control are update operations
 // even though it has post in it's name
 router
   .route('/:reviewId/upVote')
-  .put(controller.postUpVote);
+  .put(mongoController.postUpVote);
 
 router
   .route('/:reviewId/downVote')
-  .put(controller.postDownVote);
+  .put(mongoController.postDownVote);
 
 router
   .route('/:productId/newPost')
-  .post(controller.postNewReview);
+  .post(mongoController.postNewReview);
 
 router
   .route('/:reviewId/delete')
-  .delete(controller.deleteReviewById);
+  .delete(mongoController.deleteReviewById);
 
 module.exports = router;

@@ -6,7 +6,7 @@ const path = require('path');
 const reviewsRouter = require('./reviews/reviewsRouter');
 const usersRouter = require('./users/usersRouter');
 
-const mongoRouter = require('./routers/mongoRouter.js);
+const mongoRouter = require('./routers/mongoRouter.js');
 
 const app = express();
 const port = 3010;
