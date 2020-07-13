@@ -1,23 +1,11 @@
 const fs = require('fs');
 const faker = require('faker');
 const { randomRating, randomBottomLine, randomVerifiedBuyer, randomDate } = require('./reviewsGenerator.js');
-const Products = require('../index.js');
-
-const mongoose = require('mongoose');
-let database = 'mongodb://localhost/reviewSDC';
-
-mongoose.connect(database, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}, (err) => {
-  (err) ?
-    console.log('Could not connect to mongodb') :
-    console.log('Connected to reviewSDC');
-});
+// const Products = require('../index.js');
 
 
 // const writeProducts = fs.createWriteStream('products.csv');
-// writeProducts.write('review_id,product_id,productName,reviewTitle,reviewText,rating,bottomLine,votes_down,votes_up,verified_buyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade\n', 'utf8');
+// writeProducts.write('reviewId,productId,productName,reviewTitle,reviewText,rating,bottomLine,votesDown,votesUp,verifiedBuyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade\n', 'utf8');
 
 
 const randomElement = (array) => {
@@ -54,16 +42,16 @@ function writeProductsToCSV(writer, encoding, count, callback) {
       // should give between 2-4 reviews per product
       let totalReviews = Math.floor(Math.random() * (5 - 2)) + 2;
 
-      let review_id = id;
-      let product_id = id;
+      let reviewId = id;
+      let productId = id;
       let productName = `${adjective} ${color} ${product}`;
       let reviewTitle = faker.lorem.sentence();
       let reviewText = faker.lorem.paragraph();
       let rating = randomRating();
       let bottomLine = randomBottomLine();
-      let votes_down = Math.floor(Math.random() * 20);
-      let votes_up = Math.floor(Math.random() * 20);
-      let verified_buyer = randomVerifiedBuyer();
+      let votesDown = Math.floor(Math.random() * 20);
+      let votesUp = Math.floor(Math.random() * 20);
+      let verifiedBuyer = randomVerifiedBuyer();
       let reviewTime = randomDate();
       let firstName = faker.name.firstName();
       let lastName = faker.name.lastName();
@@ -72,7 +60,8 @@ function writeProductsToCSV(writer, encoding, count, callback) {
       let skinType = randomElement(skinTypes);
       let skinShade = randomElement(skinShades);
 
-      const data = `${_id},${productName},${JSON.stringify(reviewList)}\n`;
+      const data = `${reviewId},${productId},${productName},${reviewTitle},${reviewText},${rating},${bottomLine},${votesDown},${votesUp},${verifiedBuyer},${reviewTime},${firstName},${lastName},${ageRange},${JSON.stringify(place)},${skinType},${skinShade}\n`;
+
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -95,12 +84,12 @@ function writeProductsToCSV(writer, encoding, count, callback) {
 //   writeProducts.end();
 // })
 
-let seedProductsIntoMongo = () => {
+seedProductsIntoMongo = () => {
 
   let productList = [];
 
   // creates obj w/ name, price, img
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 5; i++) {
     let color = randomElement(colorChoice);
     let product = randomElement(productTitles);
     let adjective = randomElement(adjectiveList);

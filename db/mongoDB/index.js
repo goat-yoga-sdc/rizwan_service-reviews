@@ -14,24 +14,23 @@ mongoose.connect(database, {
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-  review_id: {
+  reviewId: {
     type: Number,
     unique: true,
     index: true
   },
-  product_id: {
+  productId: {
     type: Number,
-    unique: false,
-    index: true
+    unique: false
   },
   productName: String,
   reviewTitle: String,
   reviewText: String,
   rating: Number,
   bottomLine: String,
-  votes_down: Number,
-  votes_up: Number,
-  verified_buyer: String,
+  votesDown: Number,
+  votesUp: Number,
+  verifiedBuyer: String,
   reviewTime: Date,
   firstName: String,
   lastName: String,

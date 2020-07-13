@@ -8,6 +8,8 @@ const model = {
     if (parseInt(id) !== NaN) {
       // console.log(`Product ID : ${id}`);
       // Must specify each column, as I don't want user password and other fields being sent back
+
+      Products.find({ productId=id })
       db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId=${id};`, (err, result) => {
         if (err) {
           // eslint-disable-next-line no-console
