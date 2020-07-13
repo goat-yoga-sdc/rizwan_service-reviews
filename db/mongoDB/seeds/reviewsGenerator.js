@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 // This file generates the rest of the review data in our review object
 const faker = require('faker');
-const randomReviewText = require('./reviewTextGenerator.js');
 
 const skinTypes = ['Combination', 'Normal', 'Dry', 'Oily'];
 const ageRanges = ['17-24', '25-30', '31-40', '41-50', '51-60', '60 & Up'];
@@ -149,6 +148,7 @@ const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
   return reviewsArr;
 };
 
-// console.log(createReviews(100, 10));
+let transportMethods = { randomRating, randomBottomLine, randomVerifiedBuyer, randomDate }
 
-module.exports = createReviews;
+
+module.exports = transportMethods;
