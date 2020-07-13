@@ -18,8 +18,10 @@ const ProductSchema = new Schema({
   },
   productName: String,
   reviews: [{
-    review_id: Number,
-    product_id: Number,
+    review_id: {
+      type: Number,
+      index: true
+    },
     reviewTitle: String,
     reviewText: String,
     rating: Number,
@@ -34,7 +36,7 @@ const ProductSchema = new Schema({
     place: String,
     skinType: String,
     skinShade: String
-  }],
+  }]
 });
 
 const Products = mongoose.model("Products", ProductSchema);
