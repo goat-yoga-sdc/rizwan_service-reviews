@@ -1,4 +1,4 @@
-const { randomReviewTitle, randomBottomLine, randomRating, randomVerifiedBuyer, randomHelpful, randomDate, randomElement } = require('./reviewsGenerator.js');
+const { randomBottomLine, randomRating, randomVerifiedBuyer, randomDate } = require('./reviewsGenerator.js');
 const faker = require('faker');
 const fs = require('fs');
 
