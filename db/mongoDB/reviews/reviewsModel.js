@@ -9,25 +9,22 @@ const model = {
     // Else execute query by product name
     if (parseInt(id) !== NaN) {
 
-      Products.find({ productId: id },
-        (err, result) => {
-          (err) ? callback(err, null) : callback(null, result);
-        });
+      Products.find({ productId: id })
+        .then(result => callback(null, result))
+        .catch(err => console.log(err))
 
     } else {
 
-      Products.find({ productName: id },
-        (err, result) => {
-          (err) ? callback(err, null) : callback(null, result);
-        });
+      Products.find({ productName: id })
+        .then(result => callback(null, result))
+        .catch(err => console.log(err))
     }
   },
   getBySkinType: (id, skinType, callback) => {
 
-    Products.find({ productId: id, skinType: skinType },
-      (err, result) => {
-        (err) ? callback(err, null) : callback(null, result);
-      });
+    Products.find({ productId: id, skinType: skinType })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err))
 
   },
   searchReviews: (id, queryString, callback) => {
@@ -47,41 +44,75 @@ const model = {
     Products.find({
       productId: id,
       $text: { $search: queryString }
-    }
-    ).lean().exec()
-      .then(result => {
-        callback(null, result);
-      })
+    }).lean().exec()
+      .then(result => callback(null, result))
       .catch(err => console.log(err))
-    // ========================================================
 
   },
   getByProdIdSort: (id, column, order, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" ORDER BY ${column} ${order};`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        // console.log(`result ordered by ${column}, ${order} :`, result);
-        callback(null, result);
-      }
-    });
+    // db.products.aggregate(
+    //   [
+    //     { $match: { productId: 1 } },
+    //     { $sort: { rating: 1 } },
+    //   ]
+    // )
+
+    // sort index is based on order
+    let sortingIndex = (order === 'DESC') ? 1 : -1;
+    // change column to match schema
+
+    // Did not conform to DRY because sort has to take in an object with a column field as a key
+    if (column === 'reviewTime') {
+
+      Products.aggregate(
+        [
+          { $match: { productId: parseInt(id, 0) } },
+          { $sort: { reviewTime: sortingIndex } }
+        ]
+      )
+        .then(result => {
+          // console.log(result)
+          callback(null, result);
+        })
+        .catch(err => console.log(err));
+
+    } else if (column === 'rating') {
+
+      Products.aggregate(
+        [
+          { $match: { productId: parseInt(id, 0) } },
+          { $sort: { rating: sortingIndex } }
+        ]
+      )
+        .then(result => callback(null, result))
+        .catch(err => console.log(err));
+
+    } else {
+
+      Products.aggregate(
+        [
+          { $match: { productId: parseInt(id, 0) } },
+          { $sort: { votesUp: -1 } }
+        ]
+      )
+        .then(result => callback(null, result))
+        .catch(err => console.log(err));
+
+    }
+
   },
   getBySkinShade: (id, skinShade, callback) => {
 
-    Products.find({ productId: id, skinShade: skinShade },
-      (err, result) => {
-        (err) ? callback(err, null) : callback(null, result);
-      });
+    Products.find({ productId: id, skinShade: skinShade })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err));
 
   },
   getByAgeRange: (id, ageRange, callback) => {
 
-    Products.find({ productId: id, ageRange: ageRange },
-      (err, result) => {
-        (err) ? callback(err, null) : callback(null, result);
-      });
+    Products.find({ productId: id, ageRange: ageRange })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err));
 
   },
   postUpVote: (id, callback) => {
@@ -89,10 +120,9 @@ const model = {
     Products.findOneAndUpdate(
       { reviewId: id },
       { $inc: { votesUp: 1 } },
-      { new: true },
-      (err, result) => {
-        (err) ? callback(err, null) : callback(null, result);
-      });
+      { new: true })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err));
 
   },
   postDownVote: (id, callback) => {
@@ -100,10 +130,9 @@ const model = {
     Products.findOneAndUpdate(
       { reviewId: id },
       { $inc: { votesDown: 1 } },
-      { new: true },
-      (err, result) => {
-        (err) ? callback(err, null) : callback(null, result);
-      });
+      { new: true })
+      .then(result => { callback(null, result) })
+      .catch(err => console.log(err));
 
   },
   postNewReview: (body, id, callback) => {
@@ -115,10 +144,9 @@ const model = {
   },
   deleteReviewById: (id, callback) => {
 
-    Products.deleteOne({ reviewId: id },
-      (err, result) => {
-        (err) ? callback(err, null) : callback(null, result);
-      });
+    Products.deleteOne({ reviewId: id })
+      .then(result => { callback(null, result) })
+      .catch(err => console.log(err));
 
   }
 };

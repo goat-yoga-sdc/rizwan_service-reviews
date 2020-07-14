@@ -1,11 +1,13 @@
 const fs = require('fs');
 const faker = require('faker');
 const { randomRating, randomBottomLine, randomVerifiedBuyer, randomDate } = require('./reviewsGenerator.js');
-// const Products = require('../index.js');
+const Products = require('../index.js');
+// Use this command in the shell to import csv to mongoDB
+// mongoimport --type csv -d reviewSDC -c products --headerline --drop products.csv
 
 
-// const writeProducts = fs.createWriteStream('products.csv');
-// writeProducts.write('reviewId,productId,productName,reviewTitle,reviewText,rating,bottomLine,votesDown,votesUp,verifiedBuyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade\n', 'utf8');
+const writeProducts = fs.createWriteStream('products.csv');
+writeProducts.write('reviewId,productId,productName,reviewTitle,reviewText,rating,bottomLine,votesDown,votesUp,verifiedBuyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade\n', 'utf8');
 
 
 const randomElement = (array) => {
@@ -29,11 +31,15 @@ function writeProductsToCSV(writer, encoding, count, callback) {
   let i = count;
   let id = 0;
 
+  let reviewsPlaceholder = 0.2;
+
   function write() {
     let ok = true;
     do {
       i -= 1;
       id += 1;
+      // made to give me 5 reviews each product.
+      reviewsPlaceholder += 0.2
 
       let color = randomElement(colorChoice);
       let product = randomElement(productTitles);
@@ -43,7 +49,7 @@ function writeProductsToCSV(writer, encoding, count, callback) {
       let totalReviews = Math.floor(Math.random() * (5 - 2)) + 2;
 
       let reviewId = id;
-      let productId = id;
+      let productId = Math.floor(reviewsPlaceholder);
       let productName = `${adjective} ${color} ${product}`;
       let reviewTitle = faker.lorem.sentence();
       let reviewText = faker.lorem.paragraph();
@@ -80,19 +86,20 @@ function writeProductsToCSV(writer, encoding, count, callback) {
   console.log('done');
 }
 
-// writeProductsToCSV(writeProducts, 'utf-8', 3, () => {
-//   writeProducts.end();
-// })
+writeProductsToCSV(writeProducts, 'utf-8', 100, () => {
+  writeProducts.end();
+})
 
-seedProductsIntoMongo = () => {
+seedProductsIntoMongo = (count) => {
 
   let productList = [];
 
   // creates obj w/ name, price, img
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < count; i++) {
     let color = randomElement(colorChoice);
     let product = randomElement(productTitles);
     let adjective = randomElement(adjectiveList);
+
 
     let productObj = {
       review_id: i + 1,
@@ -114,6 +121,8 @@ seedProductsIntoMongo = () => {
       skinShade: randomElement(skinShades)
     };
 
+    console.log(productObj.review_id);
+
     productList[i] = productObj;
   }
 
@@ -122,4 +131,4 @@ seedProductsIntoMongo = () => {
   });
 }
 
-// seedProductsIntoMongo();
+// seedProductsIntoMongo(3);

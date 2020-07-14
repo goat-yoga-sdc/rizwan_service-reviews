@@ -5,7 +5,6 @@ let database = 'mongodb://localhost/reviewSDC';
 mongoose.connect(database, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  autoIndex: false
 }, (err) => {
   (err) ?
     console.log('Could not connect to mongodb') :
@@ -19,13 +18,10 @@ const ProductSchema = new Schema({
     type: Number,
     unique: true
   },
-  productId: {
-    type: Number,
-    unique: false
-  },
-  productName: { type: String, index: true },
-  reviewTitle: { type: String, index: true },
-  reviewText: { type: String, index: true },
+  productId: Number,
+  productName: { type: String },
+  reviewTitle: { type: String },
+  reviewText: { type: String },
   rating: Number,
   bottomLine: { type: String, index: true },
   votesDown: Number,

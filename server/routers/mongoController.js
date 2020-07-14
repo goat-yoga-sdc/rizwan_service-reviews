@@ -36,6 +36,7 @@ const controller = {
       column = 'votes_up';
       order = 'DESC';
     }
+
     model.getByProdIdSort(req.params.productId, column, order, (err, result) => {
       if (err) {
         res.status(400).send(err);
