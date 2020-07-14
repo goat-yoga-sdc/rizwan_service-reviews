@@ -15,7 +15,6 @@ writeReviews.write('id,product_id,reviewTitle,reviewText,rating,bottomLine,votes
 const skinTypes = ['Combination', 'Normal', 'Dry', 'Oily'];
 const ageRanges = ['17-24', '25-30', '31-40', '41-50', '51-60', '60 & Up'];
 const skinShades = ['Light', 'Medium', 'Deep', 'Rich'];
-const productsList = ['Lipstick', 'Lip Gloss', 'Eye Lashes', 'Lotion', 'Nail Polish', 'Concealer', 'Eyeliner', 'Brushes', 'Blender', 'Lash Stick'];
 
 function writeReviewsToCSV(writer, encoding, count, startId, callback) {
   let i = count;
@@ -48,7 +47,7 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
       const skinShade = skinShades[Math.floor(Math.random() * skinShades.length)]
 
       // data in csv was weird.
-      const data = `${reviewId}, ${productId}, ${reviewTitle}, ${JSON.stringify(reviewText)}, ${rating}, ${bottomLine}, ${votesDown}, ${votesUp}, ${verifiedBuyer}, ${reviewTime}, ${firstName}, ${lastName}, ${ageRange}, ${JSON.stringify(place)}, ${skinType}, ${skinShade}\n`;
+      const data = `${reviewId}, ${productId}, ${reviewTitle}, ${reviewText}, ${rating}, ${bottomLine}, ${votesDown}, ${votesUp}, ${verifiedBuyer}, ${reviewTime}, ${firstName}, ${lastName}, ${ageRange}, ${JSON.stringify(place)}, ${skinType}, ${skinShade}\n`;
 
       (i === 0) ?
         writer.write(data, encoding, callback) :
@@ -65,6 +64,6 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
 }
 
 // writer, encoding, count, startId, callback
-writeReviewsToCSV(writeReviews, 'utf-8', 15, 0, () => {
-  writeReviews.end();
-})
+// writeReviewsToCSV(writeReviews, 'utf-8', 15, 0, () => {
+//   writeReviews.end();
+// })
