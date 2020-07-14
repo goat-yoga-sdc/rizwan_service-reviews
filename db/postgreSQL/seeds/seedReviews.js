@@ -1,5 +1,4 @@
 const { randomReviewTitle, randomBottomLine, randomRating, randomVerifiedBuyer, randomHelpful, randomDate, randomElement } = require('./reviewsGenerator.js');
-const randomReviewText = require('./reviewTextGenerator.js');
 const faker = require('faker');
 const fs = require('fs');
 
@@ -21,24 +20,26 @@ const productsList = ['Lipstick', 'Lip Gloss', 'Eye Lashes', 'Lotion', 'Nail Pol
 function writeReviewsToCSV(writer, encoding, count, startId, callback) {
   let i = count;
   let id = startId;
+  let productIndex = 0;
 
   function write() {
     let ok = true;
     do {
       i -= 1;
       id += 1;
-      let productName = randomElement(productsList);
+      productIndex += .4;
 
-      const [votes_up, votes_down] = randomHelpful();
-      const review_id = id;
-      const product_id = Math.floor(Math.random() * count);
-      const reviewTitle = randomReviewTitle(productName);
-      const reviewText = randomReviewText(productName);
+      const reviewId = id;
+      // 1 product has 2 - 3 reviews
+      const productId = Math.floor(productIndex);
+      const reviewTitle = faker.lorem.sentence();
+      const reviewText = faker.lorem.sentences(2);
       const rating = randomRating();
       const bottomLine = randomBottomLine();
-      const verified_buyer = randomVerifiedBuyer();
+      const votesDown = Math.floor(Math.random() * (20 - 5)) + 5;
+      const votesUp = Math.floor(Math.random() * (20 - 5)) + 5;
+      const verifiedBuyer = randomVerifiedBuyer();
       const reviewTime = randomDate();
-
       const firstName = faker.name.firstName();
       const lastName = faker.name.lastName();
       const ageRange = ageRanges[Math.floor(Math.random() * ageRanges.length)];
@@ -47,7 +48,7 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
       const skinShade = skinShades[Math.floor(Math.random() * skinShades.length)]
 
       // data in csv was weird.
-      const data = `${review_id}, ${product_id}, ${reviewTitle}, ${JSON.stringify(reviewText)}, ${rating}, ${bottomLine}, ${votes_down}, ${votes_up}, ${verified_buyer}, ${reviewTime}, ${firstName}, ${lastName}, ${ageRange}, ${JSON.stringify(place)}, ${skinType}, ${skinShade}\n`;
+      const data = `${reviewId}, ${productId}, ${reviewTitle}, ${JSON.stringify(reviewText)}, ${rating}, ${bottomLine}, ${votesDown}, ${votesUp}, ${verifiedBuyer}, ${reviewTime}, ${firstName}, ${lastName}, ${ageRange}, ${JSON.stringify(place)}, ${skinType}, ${skinShade}\n`;
 
       (i === 0) ?
         writer.write(data, encoding, callback) :
@@ -60,9 +61,10 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
     }
   }
   write();
+  console.log('reviews => .csv COMPLETE')
 }
 
 // writer, encoding, count, startId, callback
-writeReviewsToCSV(writeReviews, 'utf-8', 60000000, 0, () => {
+writeReviewsToCSV(writeReviews, 'utf-8', 15, 0, () => {
   writeReviews.end();
 })
