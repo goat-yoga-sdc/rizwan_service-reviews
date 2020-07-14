@@ -31,18 +31,30 @@ const model = {
 
   },
   searchReviews: (id, queryString, callback) => {
-    // console.log(id, queryString);
-    // Had to create a fulltext index in schema.sql for this to work
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId=${id} AND MATCH (productName, reviewTitle, reviewText, bottomLine) AGAINST ("${queryString}" IN NATURAL LANGUAGE MODE);`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        // console.log('query result:', result);
+
+    // VERY IMPORTANT FOR LATER
+    // ========================================
+    // Must search review of a specific product for speed!
+    // index below allows me to search for text that i want
+    // db.products.createIndex( { productName: "text", reviewTitle: "text", reviewText: "text", reviewText: "text" } )
+    // ========================================
+
+    // OPTION # 1: USE FIND
+    // WEAKNESS: it has to be whole word!
+    // lipstick works, but lip wouldn't. <= I must get results if lip is typed.
+    // also figure out how to add indexes for faster search
+    // ========================================================
+    Products.find({
+      productId: id,
+      $text: { $search: queryString }
+    }
+    ).lean().exec()
+      .then(result => {
         callback(null, result);
-      }
-    });
+      })
+      .catch(err => console.log(err))
+    // ========================================================
+
   },
   getByProdIdSort: (id, column, order, callback) => {
     db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" ORDER BY ${column} ${order};`, (err, result) => {
@@ -102,11 +114,12 @@ const model = {
     });
   },
   deleteReviewById: (id, callback) => {
-    let queryStr = `DELETE FROM reviews WHERE reviewId = ${id};`
 
-    db.query(queryStr, (err, result) => {
-      (err) ? callback(err, null) : callback(null, result);
-    });
+    Products.deleteOne({ reviewId: id },
+      (err, result) => {
+        (err) ? callback(err, null) : callback(null, result);
+      });
+
   }
 };
 
