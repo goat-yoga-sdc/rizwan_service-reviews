@@ -68,6 +68,7 @@ function writeProductsToCSV(writer, encoding, count, callback) {
 
       const data = `${reviewId},${productId},${productName},${reviewTitle},${reviewText},${rating},${bottomLine},${votesDown},${votesUp},${verifiedBuyer},${reviewTime},${firstName},${lastName},${ageRange},${JSON.stringify(place)},${skinType},${skinShade}\n`;
 
+
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {

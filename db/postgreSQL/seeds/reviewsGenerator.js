@@ -91,7 +91,7 @@ const randomReview = (productName, reviewId, productId) => {
   return newReview;
 };
 
-const productGenerator = function (productAmount, avgReviewsPerProduct) {
+const productGenerator = function (productAmount, avgReviewsPerProduct, placeholder = 0) {
   const min = avgReviewsPerProduct / 2;
   const max = avgReviewsPerProduct + min;
   let products = [];
@@ -100,7 +100,7 @@ const productGenerator = function (productAmount, avgReviewsPerProduct) {
 
   let reviewId = 0;
 
-  for (let i = 0; i < productAmount; i++) {
+  for (let i = 0 + placeholder; i < productAmount + placeholder; i++) {
     let amountOfReviews = getRandomValue(min, max);
     for (let j = 0; j < amountOfReviews; j++) {
       let itemName = randomElement(productTitles);
@@ -115,8 +115,8 @@ const productGenerator = function (productAmount, avgReviewsPerProduct) {
   return products;
 }
 
-const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
-  const products = productGenerator(numberOfProducts, avgReviewsPerProduct);
+const createReviews = (numberOfProducts, avgReviewsPerProduct, placeholder = 0) => {
+  const products = productGenerator(numberOfProducts, avgReviewsPerProduct, placeholder);
   // This creates a range of the middle 50%, centered on the avg. In theory, a large enough selection will show values adhering to the avg.
   const reviewsArr = [];
   products.forEach(({ id, product_id, name }) => {
@@ -126,5 +126,6 @@ const createReviews = (numberOfProducts, avgReviewsPerProduct) => {
 };
 
 // console.log(createReviews(5, 3));
+let methods = { randomReviewTitle, randomBottomLine, randomRating, randomVerifiedBuyer, randomHelpful, randomDate, randomElement }
 
-module.exports = createReviews;
+module.exports = methods;
