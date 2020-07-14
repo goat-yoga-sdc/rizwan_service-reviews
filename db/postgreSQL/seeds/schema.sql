@@ -38,4 +38,5 @@ CREATE TABLE reviews(
 -- COPY products(id,productName)
 -- FROM '/Users/rizwanchoudhury/Desktop/Hack Reactor/Hack Reactor Actual Course Projects/SDC/Reviews-module/DB/postgreSQL/seeds/products.csv' DELIMITER ',' CSV HEADER;
 
-COPY reviews
+-- COPY reviews(id,product_id,reviewTitle,reviewText,rating,bottomLine,votes_down,votes_up,verified_buyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade)
+-- FROM '/Users/rizwanchoudhury/Desktop/Hack Reactor/Hack Reactor Actual Course Projects/SDC/Reviews-module/DB/postgreSQL/seeds/reviews.csv' DELIMITER ',' CSV HEADER;
