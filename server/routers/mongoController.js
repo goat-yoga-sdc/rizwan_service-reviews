@@ -39,6 +39,7 @@ const controller = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // console.log(req.params)
 =======
 >>>>>>> 018cddd... add all necessary API routes
@@ -48,6 +49,8 @@ const controller = {
 
 =======
 >>>>>>> 4d86841... Revert "Mongo api"
+=======
+>>>>>>> 993e6d8... Revert "Mongo api"
     model.getByProdIdSort(req.params.productId, column, order, (err, result) => {
       if (err) {
         res.status(400).send(err);

@@ -42,6 +42,7 @@ const model = {
   },
   searchReviews: (id, queryString, callback) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     // VERY IMPORTANT FOR LATER
     // ========================================
@@ -79,6 +80,8 @@ const model = {
 >>>>>>> 018cddd... add all necessary API routes
 
 =======
+=======
+>>>>>>> 993e6d8... Revert "Mongo api"
     // console.log(id, queryString);
     // Had to create a fulltext index in schema.sql for this to work
     db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId=${id} AND MATCH (productName, reviewTitle, reviewText, bottomLine) AGAINST ("${queryString}" IN NATURAL LANGUAGE MODE);`, (err, result) => {
@@ -91,7 +94,10 @@ const model = {
         callback(null, result);
       }
     });
+<<<<<<< HEAD
 >>>>>>> 4d86841... Revert "Mongo api"
+=======
+>>>>>>> 993e6d8... Revert "Mongo api"
   },
   getByProdIdSort: (id, column, order, callback) => {
     db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" ORDER BY ${column} ${order};`, (err, result) => {
@@ -162,6 +168,7 @@ const model = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     Products.deleteOne({ reviewId: id })
       .then(result => { callback(null, result) })
       .catch(err => console.log(err));
@@ -182,6 +189,11 @@ const model = {
       (err) ? callback(err, null) : callback(null, result);
     });
 >>>>>>> 4d86841... Revert "Mongo api"
+=======
+    db.query(queryStr, (err, result) => {
+      (err) ? callback(err, null) : callback(null, result);
+    });
+>>>>>>> 993e6d8... Revert "Mongo api"
   }
 };
 

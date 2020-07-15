@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 let database = 'mongodb://localhost/reviewSDC';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 mongoose.connect(database, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -17,6 +18,9 @@ mongoose.connect(database, {
 =======
 mongoose.connect(database, { useNewUrlParser: true }, (err) => {
 >>>>>>> 4d86841... Revert "Mongo api"
+=======
+mongoose.connect(database, { useNewUrlParser: true }, (err) => {
+>>>>>>> 993e6d8... Revert "Mongo api"
   (err) ?
     console.log('Could not connect to mongodb') :
     console.log('Connected to reviewSDC');
@@ -31,6 +35,7 @@ const ProductSchema = new Schema({
     unique: true,
     index: true
   },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -65,6 +70,8 @@ const ProductSchema = new Schema({
   skinType: String,
   skinShade: String
 =======
+=======
+>>>>>>> 993e6d8... Revert "Mongo api"
   productName: String,
   reviews: [{
     reviewId: {
@@ -86,7 +93,10 @@ const ProductSchema = new Schema({
     skinType: String,
     skinShade: String
   }]
+<<<<<<< HEAD
 >>>>>>> 4d86841... Revert "Mongo api"
+=======
+>>>>>>> 993e6d8... Revert "Mongo api"
 });
 
 const Products = mongoose.model("Products", ProductSchema);
