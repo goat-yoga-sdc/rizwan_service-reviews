@@ -44,9 +44,19 @@ const model = {
     Products.find({
       productId: id,
       $text: { $search: queryString }
+<<<<<<< HEAD
     }).lean().exec()
       .then(result => callback(null, result))
       .catch(err => console.log(err))
+=======
+    }
+    ).lean().exec()
+      .then(result => {
+        callback(null, result);
+      })
+      .catch(err => console.log(err))
+    // ========================================================
+>>>>>>> 0c15610... refactor schema to add indexes for text search and searchReviews function works
 
   },
   getByProdIdSort: (id, column, order, callback) => {
@@ -144,9 +154,16 @@ const model = {
   },
   deleteReviewById: (id, callback) => {
 
+<<<<<<< HEAD
     Products.deleteOne({ reviewId: id })
       .then(result => { callback(null, result) })
       .catch(err => console.log(err));
+=======
+    Products.deleteOne({ reviewId: id },
+      (err, result) => {
+        (err) ? callback(err, null) : callback(null, result);
+      });
+>>>>>>> 0c15610... refactor schema to add indexes for text search and searchReviews function works
 
   }
 };
