@@ -9,6 +9,7 @@ const model = {
     // Else execute query by product name
     if (parseInt(id) !== NaN) {
 
+<<<<<<< HEAD
       Products.find({ productId: id })
         .then(result => callback(null, result))
         .catch(err => console.log(err))
@@ -18,13 +19,33 @@ const model = {
       Products.find({ productName: id })
         .then(result => callback(null, result))
         .catch(err => console.log(err))
+=======
+      Products.find({ productId: id },
+        (err, result) => {
+          (err) ? callback(err, null) : callback(null, result);
+        });
+
+    } else {
+
+      Products.find({ productName: id },
+        (err, result) => {
+          (err) ? callback(err, null) : callback(null, result);
+        });
+>>>>>>> ae57066... convert model to fetch data from mongo, 4 more functions to go
     }
   },
   getBySkinType: (id, skinType, callback) => {
 
+<<<<<<< HEAD
     Products.find({ productId: id, skinType: skinType })
       .then(result => callback(null, result))
       .catch(err => console.log(err))
+=======
+    Products.find({ productId: id, skinType: skinType },
+      (err, result) => {
+        (err) ? callback(err, null) : callback(null, result);
+      });
+>>>>>>> ae57066... convert model to fetch data from mongo, 4 more functions to go
 
   },
   searchReviews: (id, queryString, callback) => {
@@ -103,16 +124,30 @@ const model = {
   },
   getBySkinShade: (id, skinShade, callback) => {
 
+<<<<<<< HEAD
     Products.find({ productId: id, skinShade: skinShade })
       .then(result => callback(null, result))
       .catch(err => console.log(err));
+=======
+    Products.find({ productId: id, skinShade: skinShade },
+      (err, result) => {
+        (err) ? callback(err, null) : callback(null, result);
+      });
+>>>>>>> ae57066... convert model to fetch data from mongo, 4 more functions to go
 
   },
   getByAgeRange: (id, ageRange, callback) => {
 
+<<<<<<< HEAD
     Products.find({ productId: id, ageRange: ageRange })
       .then(result => callback(null, result))
       .catch(err => console.log(err));
+=======
+    Products.find({ productId: id, ageRange: ageRange },
+      (err, result) => {
+        (err) ? callback(err, null) : callback(null, result);
+      });
+>>>>>>> ae57066... convert model to fetch data from mongo, 4 more functions to go
 
   },
   postUpVote: (id, callback) => {
@@ -120,9 +155,16 @@ const model = {
     Products.findOneAndUpdate(
       { reviewId: id },
       { $inc: { votesUp: 1 } },
+<<<<<<< HEAD
       { new: true })
       .then(result => callback(null, result))
       .catch(err => console.log(err));
+=======
+      { new: true },
+      (err, result) => {
+        (err) ? callback(err, null) : callback(null, result);
+      });
+>>>>>>> ae57066... convert model to fetch data from mongo, 4 more functions to go
 
   },
   postDownVote: (id, callback) => {
@@ -130,9 +172,16 @@ const model = {
     Products.findOneAndUpdate(
       { reviewId: id },
       { $inc: { votesDown: 1 } },
+<<<<<<< HEAD
       { new: true })
       .then(result => { callback(null, result) })
       .catch(err => console.log(err));
+=======
+      { new: true },
+      (err, result) => {
+        (err) ? callback(err, null) : callback(null, result);
+      });
+>>>>>>> ae57066... convert model to fetch data from mongo, 4 more functions to go
 
   },
   postNewReview: (body, id, callback) => {
