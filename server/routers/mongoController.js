@@ -2,12 +2,12 @@ const model = require('../../DB/mongoDB/reviews/reviewsModel.js');
 
 const controller = {
   getByProdId: (req, res) => {
-
     model.getByProdId(req.params.productId, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
-
+      }
     });
   },
   getByProdIdSort: (req, res) => {
@@ -38,6 +38,7 @@ const controller = {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // console.log(req.params)
 =======
 >>>>>>> 018cddd... add all necessary API routes
@@ -45,66 +46,71 @@ const controller = {
     // console.log(req.params)
 >>>>>>> 5d7ae7c... cleaning up controller
 
+=======
+>>>>>>> 4d86841... Revert "Mongo api"
     model.getByProdIdSort(req.params.productId, column, order, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
+      }
     });
   },
   searchReviews: (req, res) => {
-    let { productId, queryStr } = req.params;
-
-    model.searchReviews(productId, queryStr, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+    model.searchReviews(req.params.productId, req.params.queryStr, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
+      }
     });
   },
   getBySkinType: (req, res) => {
-    let { productId, skinType } = req.params;
-
-    model.getBySkinType(productId, skinType, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+    model.getBySkinType(req.params.productId, req.params.skinType, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
+      }
     });
   },
   getBySkinShade: (req, res) => {
-    let { productId, skinShade } = req.params;
-
-    model.getBySkinShade(productId, skinShade, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+    model.getBySkinShade(req.params.productId, req.params.skinShade, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
+      }
     });
   },
   getByAgeRange: (req, res) => {
-    let { productId, ageRange } = req.params;
-
-    model.getByAgeRange(productId, ageRange, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+    model.getByAgeRange(req.params.productId, req.params.ageRange, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
+      }
     });
   },
   postUpVote: (req, res) => {
-
     model.postUpVote(req.params.reviewId, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
+      }
     });
   },
   postDownVote: (req, res) => {
-
     model.postDownVote(req.params.reviewId, (err, result) => {
-      (err) ?
-        res.status(400).send(err) :
+      if (err) {
+        res.status(400).send(err);
+      } else {
         res.status(200).json(result);
+      }
     });
   },
   postNewReview: (req, res) => {
-
     // req.body must have a key called 'reviewText'.
     model.postNewReview(req.body, req.params.productId, (err, result) => {
       (err) ?
@@ -113,7 +119,6 @@ const controller = {
     });
   },
   deleteReviewById: (req, res) => {
-
     model.deleteReviewById(req.params.reviewId, (err, result) => {
       (err) ?
         res.status(400).send(err) :
