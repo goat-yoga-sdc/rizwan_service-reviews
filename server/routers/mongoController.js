@@ -37,9 +37,13 @@ const controller = {
       order = 'DESC';
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     // console.log(req.params)
 =======
 >>>>>>> 018cddd... add all necessary API routes
+=======
+    // console.log(req.params)
+>>>>>>> 5d7ae7c... cleaning up controller
 
     model.getByProdIdSort(req.params.productId, column, order, (err, result) => {
       (err) ?
