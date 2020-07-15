@@ -17,7 +17,7 @@ const model = {
     } else {
       // console.log(`Product name : ${id}`);
 
-      let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE products.productName = "${id}";`
+      let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE products.productName = '${id}';`
 
       db.query(queryStr, (err, result) => {
         err ? callback(err, null) : callback(null, result);
@@ -25,7 +25,7 @@ const model = {
     }
   },
   getBySkinType: (id, skinType, callback) => {
-    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE products.productName = "${id}";`
+    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE skinType = '${skinType}';`
 
     db.query(queryStr, (err, result) => {
       err ? callback(err, null) : callback(null, result);
@@ -59,14 +59,15 @@ const model = {
     });
   },
   getBySkinShade: (id, skinShade, callback) => {
-    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND skinShade = ${skinShade};`
+    console.log(typeof skinShade)
+    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND skinShade = '${skinShade}';`
 
     db.query(queryStr, (err, result) => {
       err ? callback(err, null) : callback(null, result);
     });
   },
   getByAgeRange: (id, ageRange, callback) => {
-    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND ageRange = ${ageRange};`
+    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND ageRange = '${ageRange}';`
 
     db.query(queryStr, (err, result) => {
       err ? callback(err, null) : callback(null, result);

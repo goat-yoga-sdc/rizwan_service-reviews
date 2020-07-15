@@ -47,7 +47,7 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
       const skinShade = skinShades[Math.floor(Math.random() * skinShades.length)]
 
       // data in csv was weird.
-      const data = `${reviewId}, ${productId}, ${reviewTitle}, ${reviewText}, ${rating}, ${bottomLine}, ${votesDown}, ${votesUp}, ${verifiedBuyer}, ${reviewTime}, ${firstName}, ${lastName}, ${ageRange}, ${JSON.stringify(place)}, ${skinType}, ${skinShade}\n`;
+      const data = `${reviewId},${productId},${reviewTitle},${reviewText},${rating},${bottomLine},${votesDown},${votesUp},${verifiedBuyer},${reviewTime},${firstName},${JSON.stringify(lastName)},${ageRange},${JSON.stringify(place)},${skinType},${skinShade}\n`;
 
       (i === 0) ?
         writer.write(data, encoding, callback) :
