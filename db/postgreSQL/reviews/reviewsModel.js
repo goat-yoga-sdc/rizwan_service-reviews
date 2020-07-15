@@ -31,15 +31,6 @@ const model = {
       err ? callback(err, null) : callback(null, result);
     });
 
-    // db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND skinType="${skinType}";`, (err, result) => {
-    //   if (err) {
-    //     // eslint-disable-next-line no-console
-    //     console.error(err);
-    //     callback(err, null);
-    //   } else {
-    //     // console.log('result by skinType :', result);
-    //     callback(null, result);
-    //   }
   },
   searchReviews: (id, queryString, callback) => {
     // console.log(id, queryString);
@@ -68,47 +59,31 @@ const model = {
     });
   },
   getBySkinShade: (id, skinShade, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND skinShade="${skinShade}";`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
+    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND skinShade = ${skinShade};`
+
+    db.query(queryStr, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
     });
   },
   getByAgeRange: (id, ageRange, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND ageRange="${ageRange}";`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
+    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND ageRange = ${ageRange};`
+
+    db.query(queryStr, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
     });
   },
   postUpVote: (id, callback) => {
-    db.query(`UPDATE reviews SET votes_up = votes_up + 1 WHERE reviewId=${id}`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
+    let queryStr = `UPDATE reviews SET votes_up = votes_up + 1 WHERE review_id=${id};`;
+
+    db.query(queryStr, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
     });
   },
   postDownVote: (id, callback) => {
-    db.query(`UPDATE reviews SET votes_down = votes_down + 1 WHERE reviewId=${id}`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
+    let queryStr = `UPDATE reviews SET votes_down = votes_down + 1 WHERE review_id=${id};`;
+
+    db.query(queryStr, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
     });
   },
   postNewReview: (body, id, callback) => {
