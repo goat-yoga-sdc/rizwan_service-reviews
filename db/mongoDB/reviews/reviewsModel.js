@@ -1,48 +1,33 @@
 const db = require('../index.js');
 const reviewGenerator = require('../seeds/reviewsGenerator.js');
+const Products = require('../index.js');
 // Id must be analyzed to see if it is a numeric id, or a product name. Based on this, one of 2 query strings will be chosen.
 const model = {
   getByProdId: (id, callback) => {
-    // Execute query by product ID if id is  number
+
+    // Execute query by product ID if id is number
+    // Else execute query by product name
     if (parseInt(id) !== NaN) {
-      // console.log(`Product ID : ${id}`);
-      // Must specify each column, as I don't want user password and other fields being sent back
-      db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId=${id};`, (err, result) => {
-        if (err) {
-          // eslint-disable-next-line no-console
-          console.error(err);
-          callback(err, null);
-        } else {
-          // console.log('By id result : ', result);
-          callback(null, result);
-        }
-      });
-      // Else execute query by product name,
+
+      Products.find({ productId: id })
+        .then(result => callback(null, result))
+        .catch(err => console.log(err))
+
     } else {
-      // console.log(`Product name : ${id}`);
-      db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productName="${id}";`, (err, result) => {
-        if (err) { callback(err, null); } else {
-          // console.log('By name result : ', result);
-          callback(null, result);
-        }
-      });
+
+      Products.find({ productName: id })
+        .then(result => callback(null, result))
+        .catch(err => console.log(err))
     }
   },
   getBySkinType: (id, skinType, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND skinType="${skinType}";`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        // console.log('result by skinType :', result);
-        callback(null, result);
-      }
-    });
+
+    Products.find({ productId: id, skinType: skinType })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err))
+
   },
   searchReviews: (id, queryString, callback) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     // VERY IMPORTANT FOR LATER
     // ========================================
@@ -59,101 +44,96 @@ const model = {
     Products.find({
       productId: id,
       $text: { $search: queryString }
-<<<<<<< HEAD
-<<<<<<< HEAD
     }).lean().exec()
       .then(result => callback(null, result))
       .catch(err => console.log(err))
-=======
-    }
-    ).lean().exec()
-      .then(result => {
-        callback(null, result);
-      })
-      .catch(err => console.log(err))
-    // ========================================================
->>>>>>> 0c15610... refactor schema to add indexes for text search and searchReviews function works
-=======
-    }).lean().exec()
-      .then(result => callback(null, result))
-      .catch(err => console.log(err))
->>>>>>> 018cddd... add all necessary API routes
 
-=======
-=======
->>>>>>> 993e6d8... Revert "Mongo api"
-    // console.log(id, queryString);
-    // Had to create a fulltext index in schema.sql for this to work
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId=${id} AND MATCH (productName, reviewTitle, reviewText, bottomLine) AGAINST ("${queryString}" IN NATURAL LANGUAGE MODE);`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        // console.log('query result:', result);
-        callback(null, result);
-      }
-    });
-<<<<<<< HEAD
->>>>>>> 4d86841... Revert "Mongo api"
-=======
->>>>>>> 993e6d8... Revert "Mongo api"
   },
   getByProdIdSort: (id, column, order, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" ORDER BY ${column} ${order};`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        // console.log(`result ordered by ${column}, ${order} :`, result);
-        callback(null, result);
-      }
-    });
+    // db.products.aggregate(
+    //   [
+    //     { $match: { productId: 1 } },
+    //     { $sort: { rating: 1 } },
+    //   ]
+    // )
+
+    // sort index is based on order
+    let sortingIndex = (order === 'DESC') ? 1 : -1;
+    // change column to match schema
+
+    // Did not conform to DRY because sort has to take in an object with a column field as a key
+    if (column === 'reviewTime') {
+
+      Products.aggregate(
+        [
+          { $match: { productId: parseInt(id, 0) } },
+          { $sort: { reviewTime: sortingIndex } }
+        ]
+      )
+        .then(result => {
+          // console.log(result)
+          callback(null, result);
+        })
+        .catch(err => console.log(err));
+
+    } else if (column === 'rating') {
+
+      Products.aggregate(
+        [
+          { $match: { productId: parseInt(id, 0) } },
+          { $sort: { rating: sortingIndex } }
+        ]
+      )
+        .then(result => callback(null, result))
+        .catch(err => console.log(err));
+
+    } else {
+
+      Products.aggregate(
+        [
+          { $match: { productId: parseInt(id, 0) } },
+          { $sort: { votesUp: -1 } }
+        ]
+      )
+        .then(result => callback(null, result))
+        .catch(err => console.log(err));
+
+    }
+
   },
   getBySkinShade: (id, skinShade, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND skinShade="${skinShade}";`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
-    });
+
+    Products.find({ productId: id, skinShade: skinShade })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err));
+
   },
   getByAgeRange: (id, ageRange, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" AND ageRange="${ageRange}";`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
-    });
+
+    Products.find({ productId: id, ageRange: ageRange })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err));
+
   },
   postUpVote: (id, callback) => {
-    db.query(`UPDATE reviews SET votes_up = votes_up + 1 WHERE reviewId=${id}`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
-    });
+
+    Products.findOneAndUpdate(
+      { reviewId: id },
+      { $inc: { votesUp: 1 } },
+      { new: true })
+      .then(result => callback(null, result))
+      .catch(err => console.log(err));
+
   },
   postDownVote: (id, callback) => {
-    db.query(`UPDATE reviews SET votes_down = votes_down + 1 WHERE reviewId=${id}`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        callback(null, result);
-      }
-    });
+
+    Products.findOneAndUpdate(
+      { reviewId: id },
+      { $inc: { votesDown: 1 } },
+      { new: true })
+      .then(result => { callback(null, result) })
+      .catch(err => console.log(err));
+
   },
   postNewReview: (body, id, callback) => {
     let queryStr = `INSERT INTO reviews (productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime) VALUES (${id}, "Lash Stick", 3, "A waste of practical Lash Stick!", "${body.reviewText}", 2.2, "No - I would not recommend this to a friend", 13, 5, false, "5/1/2011");`;
@@ -163,37 +143,11 @@ const model = {
     });
   },
   deleteReviewById: (id, callback) => {
-    let queryStr = `DELETE FROM reviews WHERE reviewId = ${id};`
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     Products.deleteOne({ reviewId: id })
       .then(result => { callback(null, result) })
       .catch(err => console.log(err));
-=======
-    Products.deleteOne({ reviewId: id },
-      (err, result) => {
-        (err) ? callback(err, null) : callback(null, result);
-      });
->>>>>>> 0c15610... refactor schema to add indexes for text search and searchReviews function works
-=======
-    Products.deleteOne({ reviewId: id })
-      .then(result => { callback(null, result) })
-      .catch(err => console.log(err));
->>>>>>> 018cddd... add all necessary API routes
 
-=======
-    db.query(queryStr, (err, result) => {
-      (err) ? callback(err, null) : callback(null, result);
-    });
->>>>>>> 4d86841... Revert "Mongo api"
-=======
-    db.query(queryStr, (err, result) => {
-      (err) ? callback(err, null) : callback(null, result);
-    });
->>>>>>> 993e6d8... Revert "Mongo api"
   }
 };
 
