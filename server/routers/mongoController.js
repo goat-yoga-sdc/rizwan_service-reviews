@@ -36,7 +36,10 @@ const controller = {
       column = 'votes_up';
       order = 'DESC';
     }
+<<<<<<< HEAD
     // console.log(req.params)
+=======
+>>>>>>> 018cddd... add all necessary API routes
 
     model.getByProdIdSort(req.params.productId, column, order, (err, result) => {
       (err) ?

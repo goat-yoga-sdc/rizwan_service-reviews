@@ -6,9 +6,12 @@ mongoose.connect(database, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   autoIndex: false
 >>>>>>> 0c15610... refactor schema to add indexes for text search and searchReviews function works
+=======
+>>>>>>> 018cddd... add all necessary API routes
 }, (err) => {
   (err) ?
     console.log('Could not connect to mongodb') :
@@ -24,10 +27,14 @@ const ProductSchema = new Schema({
     unique: true
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 018cddd... add all necessary API routes
   productId: Number,
   productName: { type: String },
   reviewTitle: { type: String },
   reviewText: { type: String },
+<<<<<<< HEAD
 =======
   productId: {
     type: Number,
@@ -37,6 +44,8 @@ const ProductSchema = new Schema({
   reviewTitle: { type: String, index: true },
   reviewText: { type: String, index: true },
 >>>>>>> 0c15610... refactor schema to add indexes for text search and searchReviews function works
+=======
+>>>>>>> 018cddd... add all necessary API routes
   rating: Number,
   bottomLine: { type: String, index: true },
   votesDown: Number,
