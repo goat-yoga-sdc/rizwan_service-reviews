@@ -23,7 +23,7 @@ app.use('/reviews', reviewsRouter);
 // app.use('/users', usersRouter);
 
 app.use('/mongo', mongoRouter);
-app.use('./postgres', postgresRouter);
+app.use('/postgres', postgresRouter);
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Reviews module app listening at http://localhost:${port}`));

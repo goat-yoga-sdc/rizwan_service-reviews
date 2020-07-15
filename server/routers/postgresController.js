@@ -1,13 +1,11 @@
-const model = require('../../Db/db/reviews/reviewsModel.js');
+const model = require('../../Db/postgreSQL/reviews/reviewsModel.js');
 
 const controller = {
   getByProdId: (req, res) => {
     model.getByProdId(req.params.productId, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   getByProdIdSort: (req, res) => {
@@ -37,65 +35,51 @@ const controller = {
       order = 'DESC';
     }
     model.getByProdIdSort(req.params.productId, column, order, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   searchReviews: (req, res) => {
     model.searchReviews(req.params.productId, req.params.queryStr, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   getBySkinType: (req, res) => {
     model.getBySkinType(req.params.productId, req.params.skinType, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   getBySkinShade: (req, res) => {
     model.getBySkinShade(req.params.productId, req.params.skinShade, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   getByAgeRange: (req, res) => {
     model.getByAgeRange(req.params.productId, req.params.ageRange, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   postUpVote: (req, res) => {
     model.postUpVote(req.params.reviewId, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   postDownVote: (req, res) => {
     model.postDownVote(req.params.reviewId, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
   postNewReview: (req, res) => {
