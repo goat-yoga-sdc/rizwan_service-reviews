@@ -2,8 +2,8 @@ const { randomBottomLine, randomRating, randomVerifiedBuyer, randomDate } = requ
 const faker = require('faker');
 const fs = require('fs');
 
-const writeReviews = fs.createWriteStream('./reviews.csv');
-writeReviews.write('review_id,product_id,reviewTitle,reviewText,rating,bottomLine,votes_down,votes_up,verified_buyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade\n', 'utf8');
+// const writeReviews = fs.createWriteStream('./reviews.csv');
+// writeReviews.write('review_id,product_id,reviewTitle,reviewText,rating,bottomLine,votes_down,votes_up,verified_buyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade\n', 'utf8');
 
 // =================================================
 // Parameters Legends
@@ -64,6 +64,6 @@ function writeReviewsToCSV(writer, encoding, count, startId, callback) {
 }
 
 // writer, encoding, count, startId, callback
-writeReviewsToCSV(writeReviews, 'utf-8', 15, 0, () => {
-  writeReviews.end();
-})
+// writeReviewsToCSV(writeReviews, 'utf-8', 23000000, 0, () => {
+//   writeReviews.end();
+// })

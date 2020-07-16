@@ -8,7 +8,7 @@ const model = {
       // console.log(`Product ID : ${id}`);
       // Must specify each column, as I don't want user password and other fields being sent back
 
-      let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id};`
+      let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id};`;
 
       db.query(queryStr, (err, result) => {
         err ? callback(err, null) : callback(null, result);
@@ -25,7 +25,7 @@ const model = {
     }
   },
   getBySkinType: (id, skinType, callback) => {
-    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE skinType = '${skinType}';`
+    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND skinType = '${skinType}';`
 
     db.query(queryStr, (err, result) => {
       err ? callback(err, null) : callback(null, result);
@@ -47,19 +47,13 @@ const model = {
     });
   },
   getByProdIdSort: (id, column, order, callback) => {
-    db.query(`SELECT reviewId, productId, productName, user_id, reviewTitle, reviewText, rating, bottomLine, votes_down, votes_up, verified_buyer, reviewTime, firstName, lastName, ageRange, place, skinType, skinShade FROM reviews INNER JOIN users ON reviews.user_id = users.id WHERE productId="${id}" ORDER BY ${column} ${order};`, (err, result) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-        callback(err, null);
-      } else {
-        // console.log(`result ordered by ${column}, ${order} :`, result);
-        callback(null, result);
-      }
+    let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} ORDER BY ${column} ${order};`;
+
+    db.query(queryStr, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
     });
   },
   getBySkinShade: (id, skinShade, callback) => {
-    console.log(typeof skinShade)
     let queryStr = `SELECT * FROM reviews INNER JOIN products ON reviews.product_id = products.id WHERE product_id = ${id} AND skinShade = '${skinShade}';`
 
     db.query(queryStr, (err, result) => {
