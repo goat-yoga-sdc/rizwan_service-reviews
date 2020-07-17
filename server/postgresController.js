@@ -1,19 +1,19 @@
-const model = require('../../Db/db/reviews/reviewsModel.js');
+const model = require('../db/postgreSQL/reviews/reviewsModel.js');
 
 const controller = {
   getByProdId: (req, res) => {
+
     model.getByProdId(req.params.productId, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
+
   },
+
   getByProdIdSort: (req, res) => {
-    let column = '';
-    let order = '';
-    // console.log(`req.params.sortBy: ${req.params.sortBy}`);
+
+    let column, order;
     // Set column and order variables by interpreting value
     // Most Recent
     if (req.params.sortBy === '1') {
@@ -36,82 +36,97 @@ const controller = {
       column = 'votes_up';
       order = 'DESC';
     }
+
     model.getByProdIdSort(req.params.productId, column, order, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
+
   },
+
   searchReviews: (req, res) => {
-    model.searchReviews(req.params.productId, req.params.queryStr, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+    let { productId, queryStr } = req.params;
+
+    model.searchReviews(productId, queryStr, (err, result) => {
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
   },
+
   getBySkinType: (req, res) => {
-    model.getBySkinType(req.params.productId, req.params.skinType, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+    let { productId, skinType } = req.params;
+
+    model.getBySkinType(productId, skinType, (err, result) => {
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
+
   },
+
   getBySkinShade: (req, res) => {
-    model.getBySkinShade(req.params.productId, req.params.skinShade, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+    let { productId, skinShade } = req.params;
+
+    model.getBySkinShade(productId, skinShade, (err, result) => {
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
+
   },
+
   getByAgeRange: (req, res) => {
-    model.getByAgeRange(req.params.productId, req.params.ageRange, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+    let { productId, ageRange } = req.params;
+
+    model.getByAgeRange(productId, ageRange, (err, result) => {
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
+
   },
+
   postUpVote: (req, res) => {
+
     model.postUpVote(req.params.reviewId, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
+
   },
+
   postDownVote: (req, res) => {
+
     model.postDownVote(req.params.reviewId, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(result);
-      }
+      err ?
+        res.status(400).send(err) :
+        res.status(200).send(result.rows);
     });
+
   },
+
   postNewReview: (req, res) => {
+
     // req.body must have a key called 'reviewText'.
     model.postNewReview(req.body, req.params.productId, (err, result) => {
       (err) ?
         res.status(400).send(err) :
         res.status(200).send('successful post');
     });
+
   },
+
   deleteReviewById: (req, res) => {
+
     model.deleteReviewById(req.params.reviewId, (err, result) => {
       (err) ?
         res.status(400).send(err) :
         res.status(200).send('deleted post');
     });
+
   }
 };
 
