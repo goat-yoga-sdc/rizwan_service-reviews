@@ -5,10 +5,9 @@
   "main": ".eslintrc.js",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "test": "jest --coverage",
     "build": "webpack -w -d",
-    "seed": "node ./db/seeds/",
-    "connectDB": "node ./postgreSQL/index.js"
+    "connectDB": "node ./postgreSQL/index.js",
+    "stressTest": "artillery run artilleryTest.yml"
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,7 @@
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "morgan": "^1.10.0",
+    "newrelic": "^6.11.0",
     "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-clamp-lines": "^3.0.2",
@@ -43,6 +43,7 @@
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-react": "^7.10.1",
+    "artillery": "^1.6.1",
     "babel-loader": "^8.1.0",
     "babel-preset-es2015": "^6.24.1",
     "convert-array-to-csv": "^2.0.0",
