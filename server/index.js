@@ -14,6 +14,6 @@ app.use(morgan('dev'));
 
 app.use('/', express.static(path.join(`${__dirname}/../public`)));
 
-app.use('/postgres', postgresRouter);
+app.use('/reviews', postgresRouter);
 
 app.listen(port, () => console.log(`Reviews module app listening at http://localhost:${port}`));
