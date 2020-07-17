@@ -7,6 +7,7 @@ const reviewsRouter = require('./reviews/reviewsRouter');
 // const usersRouter = require('./users/usersRouter');
 
 const mongoRouter = require('./routers/mongoRouter.js');
+const postgresRouter = require('./routers/postgresRouter.js')
 
 const app = express();
 const port = 3010;
@@ -22,6 +23,7 @@ app.use('/reviews', reviewsRouter);
 // app.use('/users', usersRouter);
 
 app.use('/mongo', mongoRouter);
+app.use('/postgres', postgresRouter);
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Reviews module app listening at http://localhost:${port}`));
