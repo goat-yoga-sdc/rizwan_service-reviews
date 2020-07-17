@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 0,
+      productId: 1,
       avgRating: 0,
       totalReviews: 0,
       reviews: [],
@@ -92,7 +92,7 @@ class App extends React.Component {
 
   calculateAvgRating() {
     // iterate over each review and extract the rating value, add them together, then divide by the totalReviews
-    const total = this.state.reviews.reduce((accumulator, currentValue) => accumulator + currentValue.rating, 0);
+    const total = this.state.reviews.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.rating, 0), 0);
     // console.log(total);
     const avgRating = (total / this.state.reviews.length).toPrecision(2);
     // console.log(avgRating);
