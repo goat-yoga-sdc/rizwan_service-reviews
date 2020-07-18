@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 1,
+      productId: Math.floor(Math.random() * 9000000),
       avgRating: 0,
       totalReviews: 0,
       reviews: [],
@@ -33,16 +33,12 @@ class App extends React.Component {
   }
 
   setAppState(property, data) {
-    this.setState({
-      [property]: data,
-    });
+    this.setState({ [property]: data });
   }
 
   setSearchPerformed() {
     if (this.state.searchPerformed === false) {
-      this.setState({
-        searchPerformed: true,
-      });
+      this.setState({ searchPerformed: true });
     }
   }
 
@@ -50,13 +46,9 @@ class App extends React.Component {
     axios
       .get('/productId')
       .then((data) => {
-        this.setState({
-          productId: data.data.productId,
-        });
+        this.setState({ productId: data.data.productId });
       })
-      .then(() => {
-        this.getReviews();
-      });
+      .then(() => { this.getReviews() });
   }
 
   getReviews() {
@@ -73,32 +65,22 @@ class App extends React.Component {
         this.calculateTotalReviews();
         this.calculateAvgRating();
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => { console.error(err) });
   }
 
-  clearFilters() {
-    this.setState({
-      searchPerformed: false,
-    });
-  }
+  clearFilters() { this.setState({ searchPerformed: false }) }
 
   calculateTotalReviews() {
-    this.setState({
-      totalReviews: this.state.reviews.length,
-    });
+    this.setState({ totalReviews: this.state.reviews.length });
   }
 
   calculateAvgRating() {
     // iterate over each review and extract the rating value, add them together, then divide by the totalReviews
     const total = this.state.reviews.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.rating, 0), 0);
-    // console.log(total);
+
     const avgRating = (total / this.state.reviews.length).toPrecision(2);
-    // console.log(avgRating);
-    this.setState({
-      avgRating: parseFloat(avgRating),
-    });
+
+    this.setState({ avgRating: parseFloat(avgRating) });
   }
 
   scrollToReviewsList() {
@@ -107,12 +89,31 @@ class App extends React.Component {
   }
 
   render() {
+    let { totalReviews, avgRating, productId, reviews, reviews, searchResults, searchPerformed, currentPageOfReviews, activePage } = this.state
     return (
       <div>
         <div className="reviews-wrapper">
-          <ReviewsCounter totalReviews={this.state.totalReviews} avgRating={this.state.avgRating} />
-          <ReviewsSearch productId={this.state.productId} reviews={this.state.reviews} setAppState={this.setAppState} setSearchPerformed={this.setSearchPerformed} calculateTotalReviews={this.calculateTotalReviews} calculateAvgRating={this.calculateAvgRating} />
-          <ReviewsList reviews={this.state.reviews} searchResults={this.state.searchResults} searchPerformed={this.state.searchPerformed} currentPageOfReviews={this.state.currentPageOfReviews} activePage={this.state.activePage} setAppState={this.setAppState} scrollToReviewsList={this.scrollToReviewsList} />
+          <ReviewsCounter
+            totalReviews={totalReviews}
+            avgRating={avgRating}
+          />
+          <ReviewsSearch
+            productId={productId}
+            reviews={reviews}
+            setAppState={this.setAppState}
+            setSearchPerformed={this.setSearchPerformed}
+            calculateTotalReviews={this.calculateTotalReviews}
+            calculateAvgRating={this.calculateAvgRating}
+          />
+          <ReviewsList
+            reviews={reviews}
+            searchResults={searchResults}
+            searchPerformed={searchPerformed}
+            currentPageOfReviews={currentPageOfReviews}
+            activePage={activePage}
+            setAppState={this.setAppState}
+            scrollToReviewsList={this.scrollToReviewsList}
+          />
         </div>
       </div>
     );
