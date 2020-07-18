@@ -5,17 +5,16 @@
   "main": ".eslintrc.js",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "test": "jest --coverage",
     "build": "webpack -w -d",
-    "seed": "node ./db/seeds/",
-    "connectDB": "node ./postgreSQL/index.js"
+    "connectDB": "node ./postgreSQL/index.js",
+    "stressTest": "k6 run k6_script.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dumpling-Squad/Reviews-module.git"
   },
   "keywords": [],
-  "author": "Andrew More",
+  "author": "Rizwan Choudhury",
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
@@ -32,6 +31,7 @@
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "morgan": "^1.10.0",
+    "newrelic": "^6.11.0",
     "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-clamp-lines": "^3.0.2",
@@ -49,6 +49,7 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "faker": "^4.1.0",
     "jest": "^26.0.1",
+    "k6": "0.0.0",
     "nodemon": "^2.0.4",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"

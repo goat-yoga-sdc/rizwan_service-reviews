@@ -15,9 +15,8 @@ class ReviewsEntry extends React.Component {
 
   upVote() {
     axios
-      .put(`/reviews/${this.props.review.reviewId}/upVote`)
+      .put(`/reviews/${this.props.review.review_id}/upVote`)
       .then((data) => {
-        console.log(data.data);
         this.setState({
           votesUp: this.state.votesUp + 1
         });
@@ -29,7 +28,7 @@ class ReviewsEntry extends React.Component {
 
   downVote() {
     axios
-      .put(`/reviews/${this.props.review.reviewId}/downVote`)
+      .put(`/reviews/${this.props.review.review_id}/downVote`)
       .then((success) => {
         this.setState({
           votesDown: this.state.votesDown + 1
@@ -41,17 +40,19 @@ class ReviewsEntry extends React.Component {
   }
 
   render() {
+    let { firstname, lastname, reviewtime, place, skintype, agerange, skinshade, rating, reviewtitle, reviewtext, bottomline } = this.props.review;
+
     return (
       <article className='review-article'>
         <section>
           <div className='review-user-info'>
-            <p className='review-display-name'>{this.props.review.firstName} {this.props.review.lastName.slice(0, 1)}.</p>
-            <time>{this.props.review.reviewTime}</time>
-            <p className="review-display-location">{this.props.review.place}</p>
+            <p className='review-display-name'>{firstname} {lastname}.</p>
+            <time>{reviewtime}</time>
+            <p className="review-display-location">{place}</p>
             <ul className="review-user">
-              <li><b>Skin Type</b> {this.props.review.skinType}</li>
-              <li><b>Skin Shade</b> {this.props.review.skinShade}</li>
-              <li><b>Age Range</b> {this.props.review.ageRange}</li>
+              <li><b>Skin Type</b> {skintype}</li>
+              <li><b>Skin Shade</b> {skinshade}</li>
+              <li><b>Age Range</b> {agerange}</li>
             </ul>
           </div>
         </section>
@@ -59,7 +60,7 @@ class ReviewsEntry extends React.Component {
           <div className='review-text-container'>
             <div className='review-content-header'>
               <StarRatings
-                rating={this.props.review.rating}
+                rating={parseInt(rating, 0)}
                 numberOfStars={5}
                 starDimension={'20px'}
                 starSpacing={'1px'}
@@ -68,14 +69,14 @@ class ReviewsEntry extends React.Component {
                 svgIconPath={'M 14.5 1.5 c -0.7 0 -1.4 0.5 -1.6 1.2 l -2 6 H 4.5 c -0.8 0 -1.4 0.5 -1.6 1.2 s 0 1.5 0.6 1.9 l 5.2 3.8 l -2 6 c -0.2 0.7 0 1.5 0.6 1.9 c 0.3 0.2 0.7 0.3 1 0.3 c 0.4 0 0.7 -0.1 1 -0.3 l 5.2 -3.8 l 5.1 3.7 c 0.3 0.2 0.7 0.3 1 0.3 c 0.4 0 0.7 -0.1 1 -0.3 c 0.6 -0.4 0.9 -1.2 0.6 -2 l -2 -6 l 5.1 -3.7 c 0.5 -0.3 0.8 -0.8 0.8 -1.4 c 0 -1 -0.8 -1.7 -1.7 -1.7 h -6.3 l -1.9 -6 c -0.3 -0.6 -0.9 -1.1 -1.7 -1.1 Z'}
                 svgIconViewBox={'0 0 28.5 26'}
               />
-              <h3 className='review-title'>{this.props.review.reviewTitle}</h3>
+              <h3 className='review-title'>{reviewtitle}</h3>
             </div>
-            <p className='review-body'>{this.props.review.reviewText}</p>
+            <p className='review-body'>{reviewtext}</p>
           </div>
           <footer>
             <p className='review-bottom-line'>
               <b>Bottom Line</b>
-              {this.props.review.bottomLine}
+              {bottomline}
             </p>
             <p className="review-footer-container">
               <span className="review-footer-text">Was this review helpful to you?</span>

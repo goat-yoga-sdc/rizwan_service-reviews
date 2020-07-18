@@ -26,22 +26,21 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div className='review-list'>
-        {/* {this.renderList()} */}
         {this.props.currentPageOfReviews.length ?
-        <aside>
-          {this.props.currentPageOfReviews.map((review, index)=>(
-        <ReviewsEntry
-          key={index}
-          review={review}
-        />))}
-          <p className="displaying-reviews-text">Displaying Reviews
+          <aside>
+            {this.props.currentPageOfReviews.map((review, index) => (
+              <ReviewsEntry
+                key={index}
+                review={review}
+              />))}
+            <p className="displaying-reviews-text">Displaying Reviews
             <b> {(this.props.activePage - 1) * 10 + 1} - {this.props.currentPageOfReviews.length >= 10 ? this.props.activePage * 10 : (this.props.activePage - 1) * 10 + this.props.currentPageOfReviews.length}</b>
-          </p>
-          <button className="reviews-scroll-to-top" onClick={this.props.scrollToReviewsList}>
-            <b>Back to Top</b>
-          </button>
-        </aside>
-        : <h3 className='noResults'>Sorry, no results were found</h3>}
+            </p>
+            <button className="reviews-scroll-to-top" onClick={this.props.scrollToReviewsList}>
+              <b>Back to Top</b>
+            </button>
+          </aside>
+          : <h3 className='noResults'>Sorry, no results were found</h3>}
         <Pagination
           hideDisabled
           activePage={this.props.activePage}

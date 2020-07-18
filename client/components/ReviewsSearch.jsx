@@ -13,11 +13,7 @@ class ReviewsSearch extends React.Component {
     this.searchByFilter = this.searchByFilter.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({
-      queryStr: e.target.value
-    });
-  }
+  handleChange(e) { this.setState({ queryStr: e.target.value }) }
 
   clearFilters() {
     this.props.setAppState('searchPerformed', false);
@@ -32,29 +28,25 @@ class ReviewsSearch extends React.Component {
   searchReviews() {
     axios
       .get(`/reviews/${this.props.productId}/${this.state.queryStr}`)
-      .then((data)=>{
+      .then((data) => {
         this.props.setAppState('searchResults', data.data);
         this.props.setSearchPerformed();
         this.props.setAppState('currentPageOfReviews', data.data.slice(0, 10));
         this.props.setAppState('activePage', 1);
       })
-      .catch((err)=>{
-        console.error(err);
-      });
+      .catch((err) => { console.error(err) });
   }
 
   searchByFilter(e, filterType) {
     axios
       .get(`/reviews/${this.props.productId}/${filterType}/${e.target.value}`)
-      .then((data)=>{
+      .then((data) => {
         this.props.setAppState('searchResults', data.data);
         this.props.setSearchPerformed();
         this.props.setAppState('currentPageOfReviews', data.data.slice(0, 10));
         this.props.setAppState('activePage', 1);
       })
-      .catch((err)=>{
-        console.error(err);
-      });
+      .catch((err) => { console.error(err) });
   }
 
   render() {
@@ -72,7 +64,7 @@ class ReviewsSearch extends React.Component {
           </button>
         </div>
         <div className="reviews-filter">
-          <select aria-label="Sort by" id="reviews-sort" className="select" defaultValue="Default" onChange={(e)=>this.searchByFilter(e, 'sort')}>
+          <select aria-label="Sort by" id="reviews-sort" className="select" defaultValue="Default" onChange={(e) => this.searchByFilter(e, 'sort')}>
             <option value="Default" disabled hidden>Sort by</option>
             <option value="1">Most Recent</option>
             <option value="2">Oldest</option>
@@ -84,7 +76,7 @@ class ReviewsSearch extends React.Component {
         </div>
         <span className="reviews-filter-container">
           <div className="reviews-filter">
-            <select aria-label="Filter by Skin Type" className="select" id="skinType" defaultValue="Default" onChange={(e)=>this.searchByFilter(e, 'skinType')}>
+            <select aria-label="Filter by Skin Type" className="select" id="skinType" defaultValue="Default" onChange={(e) => this.searchByFilter(e, 'skinType')}>
               <option value="Default" disabled hidden>Skin Type</option>
               <option value="Combination">Combination</option>
               <option value="Normal">Normal</option>
@@ -93,7 +85,7 @@ class ReviewsSearch extends React.Component {
             </select>
           </div>
           <div className="reviews-filter">
-            <select aria-label="Filter by Age Range" className="select" id="ageRange" defaultValue="Default" onChange={(e)=>this.searchByFilter(e, 'ageRange')}>
+            <select aria-label="Filter by Age Range" className="select" id="ageRange" defaultValue="Default" onChange={(e) => this.searchByFilter(e, 'ageRange')}>
               <option value="Default" disabled hidden>Age Range</option>
               <option value="17-24">17-24</option>
               <option value="25-30">25-30</option>
@@ -104,7 +96,7 @@ class ReviewsSearch extends React.Component {
             </select>
           </div>
           <div className="reviews-filter">
-            <select aria-label="Filter by Skin Shade" className="select" id="skinShade" defaultValue="Default" onChange={(e)=>this.searchByFilter(e, 'skinShade')}>
+            <select aria-label="Filter by Skin Shade" className="select" id="skinShade" defaultValue="Default" onChange={(e) => this.searchByFilter(e, 'skinShade')}>
               <option value="Default" disabled hidden>Skin Shade</option>
               <option value="Light">Light</option>
               <option value="Medium">Medium</option>
