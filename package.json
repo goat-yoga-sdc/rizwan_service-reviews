@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon ./server/index.js",
     "build": "webpack -w -d",
-    "connectDB": "node ./postgreSQL/index.js",
-    "stressTest": "k6 run k6_script.js"
+    "connectDB": "node db/postgreSQL/index.js",
+    "stress": "k6 run k6_script.js"
   },
   "repository": {
     "type": "git",
