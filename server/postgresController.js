@@ -2,7 +2,6 @@ const model = require('../db/postgreSQL/reviews/reviewsModel.js');
 
 const controller = {
   getByProdId: (req, res) => {
-    console.log(req.params.productId);
 
     model.getByProdId(req.params.productId, (err, result) => {
       err ?

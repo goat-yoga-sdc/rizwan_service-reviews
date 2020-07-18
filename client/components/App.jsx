@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: Math.floor(Math.random() * 9000000),
+      productId: Math.floor(Math.random() * (9000000 - 8000000)) + 8000000,
       avgRating: 0,
       totalReviews: 0,
       reviews: [],
@@ -48,7 +48,8 @@ class App extends React.Component {
       .then((data) => {
         this.setState({ productId: data.data.productId });
       })
-      .then(() => { this.getReviews() });
+      .then(() => { this.getReviews() })
+      .catch((err) => { console.error(err) });
   }
 
   getReviews() {
@@ -89,7 +90,7 @@ class App extends React.Component {
   }
 
   render() {
-    let { totalReviews, avgRating, productId, reviews, reviews, searchResults, searchPerformed, currentPageOfReviews, activePage } = this.state
+    let { totalReviews, avgRating, productId, reviews, searchResults, searchPerformed, currentPageOfReviews, activePage } = this.state
     return (
       <div>
         <div className="reviews-wrapper">

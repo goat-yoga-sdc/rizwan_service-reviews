@@ -26,7 +26,6 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div className='review-list'>
-        {/* {this.renderList()} */}
         {this.props.currentPageOfReviews.length ?
           <aside>
             {this.props.currentPageOfReviews.map((review, index) => (
