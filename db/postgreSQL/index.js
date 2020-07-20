@@ -8,7 +8,8 @@ const client = new Pool({
   password: PGpass,
   host: 'localhost',
   port: 5432,
-  database: 'reviewmodule'
+  database: 'reviewmodule',
+  max: 20
 })
 
 
