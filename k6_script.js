@@ -9,8 +9,8 @@ import { check } from 'k6';
 export let options = {
   stages: [
     { duration: '10s', target: 50 },
-    { duration: '20s', target: 500 },
-    { duration: '2m', target: 500 },
+    { duration: '20s', target: 400 },
+    { duration: '5m', target: 400 },
     { duration: '10s', target: 0 }
   ],
   thresholds: {
@@ -32,6 +32,6 @@ export default function () {
   http.get(`${url}${prodId}/Yes`);
   http.get(`${url}${prodId}/skinType/Combination`);
   http.get(`${url}${prodId}/ageRange/17-24`);
-  http.put(`${url}${reviewId}/upVote`);
-  http.put(`${url}${reviewId}/downVote`);
+  // http.put(`${url}${reviewId}/upVote`);
+  // http.put(`${url}${reviewId}/downVote`);
 }
