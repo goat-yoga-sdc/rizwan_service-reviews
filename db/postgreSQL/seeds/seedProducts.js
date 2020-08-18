@@ -9,9 +9,9 @@ const writeProductsToCSV = (writer, encoding, count, callback) => {
   let id = 0;
 
   // list used to create product name
-  const productTitles = ['Lipstick', 'Lip Gloss', 'Eye Lashes', 'Lotion', 'Nail Polish', 'Concealer', 'Eyeliner', 'Brushes', 'Blender', 'Lash Stick'];
-  const colorChoice = ['Pink', 'Hot Pink', 'Blue', 'Purple', 'Green', 'Black', 'Red', 'Indigo', 'Yellow', 'Maroon'];
   const adjectiveList = ['Cool', 'Pretty', 'Sexy', 'Beautiful'];
+  const colorChoice = ['Pink', 'Hot Pink', 'Blue', 'Purple', 'Green', 'Black', 'Red', 'Indigo', 'Yellow', 'Maroon'];
+  const productTitles = ['Lipstick', 'Lip Gloss', 'Eye Lashes', 'Lotion', 'Nail Polish', 'Concealer', 'Eyeliner', 'Brushes', 'Blender', 'Lash Stick'];
 
   const write = () => {
     let ok = true;
@@ -19,9 +19,9 @@ const writeProductsToCSV = (writer, encoding, count, callback) => {
       i -= 1;
       id += 1;
 
+      let adjective = randomElement(adjectiveList);
       let color = randomElement(colorChoice);
       let product = randomElement(productTitles);
-      let adjective = randomElement(adjectiveList);
 
       let productName = `${adjective} ${color} ${product}`;
       let _id = id;
@@ -42,8 +42,8 @@ const writeProductsToCSV = (writer, encoding, count, callback) => {
   console.log('done');
 };
 
-// writeProductsToCSV(writeProducts, 'utf-8', 10000000, () => {
-//   writeProducts.end();
-// })
+writeProductsToCSV(writeProducts, 'utf-8', 10000005, () => {
+  writeProducts.end();
+})
 
 module.exports = insertProducts;

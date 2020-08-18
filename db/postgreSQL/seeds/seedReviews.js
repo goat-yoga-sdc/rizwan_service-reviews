@@ -9,9 +9,9 @@ const skinTypes = ['Combination', 'Normal', 'Dry', 'Oily'];
 const ageRanges = ['17-24', '25-30', '31-40', '41-50', '51-60', '60 & Up'];
 const skinShades = ['Light', 'Medium', 'Deep', 'Rich'];
 
-const writeReviewsToCSV = (writer, encoding, count, startId, callback) => {
+const writeReviewsToCSV = (writer, encoding, count, callback) => {
   let i = count;
-  let id = startId;
+  let id = 1;
   let productIndex = 0;
 
   const write = () => {
@@ -55,7 +55,6 @@ const writeReviewsToCSV = (writer, encoding, count, startId, callback) => {
   console.log('reviews => .csv COMPLETE');
 };
 
-// writer, encoding, count, startId, callback
-// writeReviewsToCSV(writeReviews, 'utf-8', 23000000, 0, () => {
-//   writeReviews.end();
-// })
+writeReviewsToCSV(writeReviews, 'utf-8', 25000000, () => {
+  writeReviews.end();
+})
