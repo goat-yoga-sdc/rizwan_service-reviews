@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS reviewModule;
+DROP DATABASE IF EXISTS reviews_db;
 
-CREATE DATABASE reviewModule;
+CREATE DATABASE reviews_db;
 
-\c reviewModule;
+\c reviews_db;
 
 DROP TABLE IF EXISTS products CASCADE;
 
@@ -33,11 +33,3 @@ CREATE TABLE reviews(
   FOREIGN KEY (product_id)
     REFERENCES products(id)
 );
-
--- COPY products(id,productName)
--- FROM '/Users/rizwanchoudhury/Desktop/Hack Reactor/Hack Reactor Actual Course Projects/SDC/Reviews-module/DB/postgreSQL/seeds/products.csv' DELIMITER ',' CSV HEADER;
-
--- COPY reviews(review_id,product_id,reviewTitle,reviewText,rating,bottomLine,votes_down,votes_up,verified_buyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade)
--- FROM '/Users/rizwanchoudhury/Desktop/Hack Reactor/Hack Reactor Actual Course Projects/SDC/Reviews-module/DB/postgreSQL/seeds/reviews.csv' DELIMITER ',' CSV HEADER;
-
--- CREATE INDEX idx_review_downvote ON reviews(review_id, votes_down);

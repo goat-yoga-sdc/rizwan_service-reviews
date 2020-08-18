@@ -44,6 +44,4 @@ const writeProductsToCSV = (writer, encoding, count, callback) => {
 
 writeProductsToCSV(writeProducts, 'utf-8', 10000005, () => {
   writeProducts.end();
-})
-
-module.exports = insertProducts;
+});

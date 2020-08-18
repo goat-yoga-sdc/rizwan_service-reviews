@@ -11,7 +11,7 @@ const skinShades = ['Light', 'Medium', 'Deep', 'Rich'];
 
 const writeReviewsToCSV = (writer, encoding, count, callback) => {
   let i = count;
-  let id = 1;
+  let id = 0;
   let productIndex = 0;
 
   const write = () => {
@@ -57,4 +57,4 @@ const writeReviewsToCSV = (writer, encoding, count, callback) => {
 
 writeReviewsToCSV(writeReviews, 'utf-8', 25000000, () => {
   writeReviews.end();
-})
+});
