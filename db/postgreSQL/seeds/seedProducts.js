@@ -1,14 +1,10 @@
 const fs = require('fs');
-
-const randomElement = (array) => {
-  const randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
-};
+const { randomElement } = require('./reviewsGenerator.js');
 
 const writeProducts = fs.createWriteStream('./products.csv');
 writeProducts.write('id,productName\n', 'utf8');
 
-function writeProductsToCSV(writer, encoding, count, callback) {
+const writeProductsToCSV = (writer, encoding, count, callback) => {
   let i = count;
   let id = 0;
 
@@ -17,7 +13,7 @@ function writeProductsToCSV(writer, encoding, count, callback) {
   const colorChoice = ['Pink', 'Hot Pink', 'Blue', 'Purple', 'Green', 'Black', 'Red', 'Indigo', 'Yellow', 'Maroon'];
   const adjectiveList = ['Cool', 'Pretty', 'Sexy', 'Beautiful'];
 
-  function write() {
+  const write = () => {
     let ok = true;
     do {
       i -= 1;
@@ -27,11 +23,11 @@ function writeProductsToCSV(writer, encoding, count, callback) {
       let product = randomElement(productTitles);
       let adjective = randomElement(adjectiveList);
 
-      // sets what is written in csv file as data
       let productName = `${adjective} ${color} ${product}`;
       let _id = id;
 
       const data = `${_id},${productName}\n`;
+
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -41,15 +37,13 @@ function writeProductsToCSV(writer, encoding, count, callback) {
     } while (i > 0 && ok);
 
     if (i > 0) { writer.once('drain', write); }
-  }
-  write()
+  };
+  write();
   console.log('done');
-}
+};
 
-writeProductsToCSV(writeProducts, 'utf-8', 10000000, () => {
-  writeProducts.end();
-})
-
-// console.log(insertProducts(100));
+// writeProductsToCSV(writeProducts, 'utf-8', 10000000, () => {
+//   writeProducts.end();
+// })
 
 module.exports = insertProducts;

@@ -1,5 +1,5 @@
-const db = require("../index.js");
-const reviewGenerator = require("../seeds/reviewsGenerator.js");
+const db = require('../index.js');
+const reviewGenerator = require('../seeds/reviewsGenerator.js');
 
 const model = {
   getByProdId: (id, callback) => {

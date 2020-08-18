@@ -2,6 +2,6 @@
 // Make sure to mention this file in your gitignore file.
 
 module.exports = {
-  user: "YOUR POSTGRES USERNAME",
-  password: "YOUR POSTGRES PASSWORD",
+  user: 'YOUR POSTGRES USERNAME',
+  password: 'YOUR POSTGRES PASSWORD',
 };

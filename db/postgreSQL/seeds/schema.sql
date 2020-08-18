@@ -11,7 +11,6 @@ CREATE TABLE products(
   productName VARCHAR(255)
 );
 
--- cascase option allows removal foreign key, because it depends on
 DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE reviews(
