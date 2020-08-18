@@ -1,4 +1,7 @@
-// change file name from other.password.js to password.js to gitignore file
-// OR gitignore postgreSQL/other.password.js
+// Use this file to put your sensitive postgres information
+// Make sure to mention this file in your gitignore file.
 
-module.exports = 'your password';
+module.exports = {
+  user: "YOUR POSTGRES USERNAME",
+  password: "YOUR POSTGRES PASSWORD",
+};
