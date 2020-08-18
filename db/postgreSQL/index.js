@@ -1,12 +1,12 @@
 const { Pool } = require('pg');
-const { user, password } = require('./password.js');
+const { user, password } = require('./credentials.js');
 
 const client = new Pool({
   user: user,
   password: password,
   host: 'localhost',
   port: 5432,
-  database: 'reviewmodule',
+  database: 'reviews_db',
   max: 20,
 });
 
