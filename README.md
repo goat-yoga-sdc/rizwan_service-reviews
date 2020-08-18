@@ -1,6 +1,6 @@
 # Reviews-module
 
-A reviews module to be used as part of our 'Glossier' product page implementation
+> Inherited the front-end replica of the legacy codebase for Glossier's review micro service. Inserted 10 million products and 25 million reviews for database benchmark testing between mongo and postgres. Optimized query time under 5ms with postgres as main database. Designed a system to hit a throughput of 2250 RPS, while maintaining an average latency of 95ms and 0.0% error rate.
 
 ## Related Projects
 
@@ -80,4 +80,17 @@ From within the root directory:
 ```sh
 npm install -g webpack
 npm install
+```
+
+## Notes
+
+For Mongo setup
+```sh
+1. go to github
+2. go to my reviews repository.
+3. go to 2DBs branch
+4. go to db => mongoDB folder
+this folder contains the model that queries and connects to the database
+5. go to server => routers => mongoRouter.js or mongoController.js
+this files contains the router and controller that points to the model
 ```
