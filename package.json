@@ -6,16 +6,20 @@
   "scripts": {
     "start": "nodemon ./server/index.js",
     "build": "webpack -w -d",
-    "connectDB": "node db/postgreSQL/index.js",
     "stress": "k6 run k6_script.js",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "generate-products": "node db/postgreSQL/seeds/seedProducts.js",
+    "generate-reviews": "node db/postgreSQL/seeds/seedReviews.js",
+    "seed-products": "psql -d reviews_db -c \"\\COPY products(id,productName) FROM 'products.csv' DELIMITER ',' CSV HEADER;\"",
+    "seed-reviews": "psql -d reviews_db -c \"\\COPY reviews(review_id,product_id,reviewTitle,reviewText,rating,bottomLine,votes_down,votes_up,verified_buyer,reviewTime,firstName,lastName,ageRange,place,skinType,skinShade) FROM 'reviews.csv' DELIMITER ',' CSV HEADER;\"",
+    "create-indices": "psql -d reviews -c \"CREATE INDEX index_products ON products(id); CREATE INDEX index_reviews_id ON reviews(review_id); CREATE INDEX index_product_id ON reviews (product_id);\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dumpling-Squad/Reviews-module.git"
   },
   "keywords": [],
-  "author": "Rizwan Choudhury",
+  "author": "Rizwan Choudhury(System Design/Back End) & Andrew More(Front End)",
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
