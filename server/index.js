@@ -4,7 +4,7 @@ const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
-const postgresRouter = require('./postgresRouter.js')
+const postgresRouter = require('./postgresRouter.js');
 
 const app = express();
 const port = 3010;
@@ -17,4 +17,6 @@ app.use('/', express.static(path.join(`${__dirname}/../public`)));
 
 app.use('/reviews', postgresRouter);
 
-app.listen(port, () => console.log(`Reviews module app listening at http://localhost:${port}`));
+app.listen(port, () =>
+  console.log(`Reviews module app listening at http://localhost:${port}`)
+);

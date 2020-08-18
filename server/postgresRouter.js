@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const postgresController = require('./postgresController.js')
+const postgresController = require('./postgresController.js');
 
 /* Will have just one router/controller to handle both product id or name.
 The distinction will be made in the model, where the param will be analyzed based on data type. */
@@ -27,8 +27,6 @@ router
   .route('/:productId/ageRange/:ageRange')
   .get(postgresController.getByAgeRange);
 
-// vote control are update operations
-// even though it has post in it's name
 router
   .route('/:reviewId/upVote')
   .put(postgresController.postUpVote);

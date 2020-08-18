@@ -10,7 +10,6 @@ const skinShades = ['Light', 'Medium', 'Deep', 'Rich'];
 const getRandomValue = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  // The maximum is exclusive and the minimum is inclusive
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
@@ -20,19 +19,18 @@ const randomElement = (array) => {
 };
 
 const randomBottomLine = () => {
-  const phrase = ['Yes - I would recommend this to a friend', 'No - I would not recommend this to a friend'];
+  const phrase = [
+    'Yes - I would recommend this to a friend',
+    'No - I would not recommend this to a friend',
+  ];
   return `${randomElement(phrase)}`;
 };
 
 const randomRating = () => {
-  const precision = 10; // 1 decimal place
+  const precision = 10;
   const randomNum = Math.floor(Math.random() * (5 * precision - 1 * precision) + 1 * precision) / (1 * precision);
   return randomNum;
 };
-// Used for testing above function
-// for (let i = 0; i < 20; i++){
-// console.log(randomRating());
-// };
 
 // Will return true 20% of the time
 const randomVerifiedBuyer = () => Math.random() < 0.2;
@@ -49,7 +47,13 @@ const randomDate = () => {
   return new Date(randomValueBetween(date1, date2)).toLocaleDateString();
 };
 
-// console.log(createReviews(5, 3));
-let methods = { randomBottomLine, randomRating, randomVerifiedBuyer, randomDate }
+let seedMethods = {
+  getRandomValue,
+  randomElement,
+  randomBottomLine,
+  randomRating,
+  randomVerifiedBuyer,
+  randomDate,
+};
 
-module.exports = methods;
+module.exports = seedMethods;

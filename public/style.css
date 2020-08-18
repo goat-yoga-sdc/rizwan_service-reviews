@@ -1,11 +1,12 @@
-/* regular font */
+/* Regular font */
 @font-face {font-family: "Apercu Pro"; src: url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.eot"); src:
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.eot?#iefix") format("embedded-opentype"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.woff2") format("woff2"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.woff") format("woff"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.ttf") format("truetype"),
   url("//db.onlinewebfonts.com/t/0406c39d71726a4efe1134bf8e3feb71.svg#Apercu Pro") format("svg"); }
-/* bold font */
+
+/* Bold font */
 @font-face {font-family: "Apercu Pro"; src: url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.eot"); src:
   url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.eot?#iefix") format("embedded-opentype"),
   url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.woff2") format("woff2"),
@@ -14,7 +15,7 @@
   url("//db.onlinewebfonts.com/t/bbecd6e12f97db669f1cbab12fc6d06b.svg#Apercu Pro") format("svg");
   font-weight: bold; }
 
-/*reset CSS */
+/* Reset CSS */
 * {
   box-sizing: border-box;
 }
@@ -146,7 +147,7 @@ path.star {
   margin: 16px 64px 24px;
 }
 
-/*styling for arrows */
+/* Styling for arrows */
 .up-arrow {
   box-sizing: border-box;
   display: flex;
@@ -158,7 +159,6 @@ path.star {
   transform: rotate(180deg);
 }
 
-/* */
 .header {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 0px;
@@ -167,11 +167,6 @@ path.star {
   top: 0;
   z-index: 1000;
 }
-
-/* .productDetail {
-  background-repeat: no-repeat;
-  min-height: 600px;
-} */
 
 .main-wrapper {
   box-sizing: border-box;
@@ -195,7 +190,6 @@ path.star {
 
 .productImage {
   background-repeat: no-repeat;
-  /* min-height: 516px; */
   height: 100%;
   padding: 0 16px;
   position: sticky;
@@ -218,7 +212,6 @@ path.star {
   padding: 0 16px;
 }
 
-/* */
 .highlights-wrapper {
   border-bottom: 1px solid rgb(217, 217, 217);
   border-top: 1px solid rgb(217, 217, 217);
@@ -258,7 +251,6 @@ path.star {
   outline: none;
 }
 
-/* */
 #reviews-accordion {
   max-height: 4000px;
   text-align: left;
@@ -350,7 +342,6 @@ button.readAll span:last-child {
   margin: 0px;
 }
 
-/* */
 p.helpful {
   font-style: inherit;
   font-weight: 400;
@@ -403,7 +394,7 @@ p.helpful {
   padding: 7px 2px 5px;
 }
 
-/* review list*/
+/* Review list */
 .review-article {
   display: flex;
   -ms-flex-flow: row wrap;
@@ -421,7 +412,7 @@ p.helpful {
   padding-left: 5%;
 }
 
-/*user info in review list */
+/* User info in review list */
 .review-user-info {
   width: 200px;
 }
@@ -448,7 +439,7 @@ p.helpful {
   line-height: 1.4;
 }
 
-/* review content */
+/* Review content */
 .review-text-container {
   width: 570px;
 }
@@ -488,7 +479,7 @@ span.helpful {
   margin: 1rem 0px;
 }
 
-/* Search Bar styling*/
+/* Search Bar styling */
 .noResults {
   margin-top: 1.5rem;
   text-align: center;
@@ -573,7 +564,7 @@ span.helpful {
   font-weight: 400;
 }
 
-/* pagination styling */
+/* Pagination styling */
 .reviews-scroll-to-top {
   color: #00f;
   cursor: pointer;
@@ -598,10 +589,6 @@ ul.pagination {
 }
 
 ul.pagination li {
-  /* min-height: 45px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center; */
   width: 100%;
 }
 

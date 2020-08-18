@@ -1,30 +1,13 @@
 const { Pool } = require('pg');
-const PGpass = require('./password.js');
-
-// 'ssl: true' for deployment??
+const { user, password } = require('./credentials.js');
 
 const client = new Pool({
-  user: 'rizwanchoudhury',
-  password: PGpass,
+  user: user,
+  password: password,
   host: 'localhost',
   port: 5432,
-  database: 'reviewmodule',
-  max: 20
-})
-
-
-// let connection = async () => {
-//   try {
-//     console.log('connected to postgres client');
-//   }
-//   }
-//   catch (err) {
-//     console.log('error in postgreSQL/index.js', err);
-//   }
-//   finally {
-//     console.log('ending client');
-//     client.end();
-//   }
-// }
+  database: 'reviews_db',
+  max: 20,
+});
 
 module.exports = client;
