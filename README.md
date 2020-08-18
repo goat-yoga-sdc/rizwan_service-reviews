@@ -38,9 +38,11 @@ module.exports = {
 ```
 
 Create Schema
+```sh
 log into psql shell with your credentials
 go to `db` => `postgreSQL` => `seeds` => open `schema.sql`.
 copy and paste all lines in `schema.sql` into psql shell.
+```
 
 Generate Data
 ```sh
