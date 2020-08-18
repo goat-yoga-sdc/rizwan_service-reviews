@@ -27,8 +27,6 @@ router
   .route('/:productId/ageRange/:ageRange')
   .get(postgresController.getByAgeRange);
 
-// vote control are update operations
-// even though it has post in it's name
 router
   .route('/:reviewId/upVote')
   .put(postgresController.postUpVote);
